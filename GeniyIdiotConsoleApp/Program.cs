@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeniyIdiotConsoleApp
 {
@@ -25,7 +20,7 @@ namespace GeniyIdiotConsoleApp
                 {
                     Console.WriteLine($"Вопрос №{i + 1}:");
                     Console.Write($"{question[i]}: ");
-                    var userAnswer = Convert.ToInt32(Console.ReadLine());
+                    var userAnswer = GetNumber();
                     if (userAnswer == answer[i]) countCorrectUserAnswer++;
                 }
 
@@ -37,6 +32,24 @@ namespace GeniyIdiotConsoleApp
             }while (Repeat());
         }
 
+        static int GetNumber()
+        {
+            while (true)
+            {
+                try
+                {
+                    return Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.Write("Для ответа, используйте числа от 0 до 9: ");
+                }
+                catch (OverflowException)
+                {
+                    Console.Write($"Ответ  должен быть в диапазоне от {int.MinValue} до {int.MaxValue}: ");
+                }
+            }
+        }
         static bool Repeat()
         {
             Console.Write("Провести повторное тестирование(да/нет)? ");
