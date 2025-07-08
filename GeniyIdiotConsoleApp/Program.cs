@@ -52,7 +52,7 @@ namespace GeniyIdiotConsoleApp
                 var lines = File.ReadAllLines(file);
                 foreach (var line in lines)
                 {
-                    var item = line.Split(new char['#'], StringSplitOptions.RemoveEmptyEntries);
+                    var item = line.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
                     (string name, int countCorrectAnswer, string diagnosis) = (item[0], Convert.ToInt32(item[1]), item[2]);
                     Console.WriteLine($"{name,-15}{countCorrectAnswer,10}{diagnosis,23}");
                 }
@@ -60,9 +60,9 @@ namespace GeniyIdiotConsoleApp
             else
             {
                 Console.WriteLine("Результаты ранее проведенных тестов отсутствуют!");
+            }
                 Console.WriteLine("Для возвращения в меню, нажмите любую клавишу.");
                 Console.ReadKey();
-            }
         }
 
         static void StartTest()
@@ -89,6 +89,11 @@ namespace GeniyIdiotConsoleApp
                 string diagnosis = GetDiagnosis(countCorrectUserAnswer, answer.Length);
 
                 Console.WriteLine($"{userName} твой диагноз - {diagnosis}");
+
+                var file = Path.Combine(Environment.CurrentDirectory, "log.txt");
+                var result = $"{userName}#{countCorrectUserAnswer}#{diagnosis}";
+                File.AppendAllText(file, result);
+
             } while (Repeat());
         }
 
