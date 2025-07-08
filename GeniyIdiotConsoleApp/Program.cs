@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace GeniyIdiotConsoleApp
 {
@@ -6,10 +7,69 @@ namespace GeniyIdiotConsoleApp
     {
         static void Main(string[] args)
         {
+            int userChoice;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Меню:");
+                Console.WriteLine("1. Просмотр результатов тестирования");
+                Console.WriteLine("2. Начать тестирование");
+                Console.WriteLine("3. Выход");
+                Console.Write("Выберите номер пункта меню: ");
+                userChoice = GetNumber();
+
+                switch (userChoice)
+                {
+                    case 1:
+                        ShowResults();
+                        break;
+                    case 2:
+                        StartTest();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        Console.Write("Некорректный выбор, доступный диапазон от 1 до 3!" +
+                                       Environment.NewLine +
+                                       "Выберите номер пункта меню: ");
+                        userChoice = GetNumber();
+                        break;
+                }
+            }
+            while (userChoice != 3);
+        }
+
+        static void ShowResults()
+        {
+            Console.Clear();
+
+            var file = Path.Combine(Environment.CurrentDirectory, "log.txt");
+            if (File.Exists(file))
+            {
+                Console.WriteLine($"{"Имя",-15}{"Правильные ответы",18}{"Диагноз",15}");
+
+                var lines = File.ReadAllLines(file);
+                foreach (var line in lines)
+                {
+                    var item = line.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
+                    (string name, int countCorrectAnswer, string diagnosis) = (item[0], Convert.ToInt32(item[1]), item[2]);
+                    Console.WriteLine($"{name,-15}{countCorrectAnswer,10}{diagnosis,23}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Результаты ранее проведенных тестов отсутствуют!");
+            }
+                Console.WriteLine("Для возвращения в меню, нажмите любую клавишу.");
+                Console.ReadKey();
+        }
+
+        static void StartTest()
+        {
             do
             {
                 (string[] question, int[] answer) = GetQuestions();
-
                 ShuffleQuestions(question, answer);
 
                 Console.Write("Напиши своё имя: ");
@@ -29,7 +89,12 @@ namespace GeniyIdiotConsoleApp
                 string diagnosis = GetDiagnosis(countCorrectUserAnswer, answer.Length);
 
                 Console.WriteLine($"{userName} твой диагноз - {diagnosis}");
-            }while (Repeat());
+
+                var file = Path.Combine(Environment.CurrentDirectory, "log.txt");
+                var result = $"{userName}#{countCorrectUserAnswer}#{diagnosis}";
+                File.AppendAllText(file, result);
+
+            } while (Repeat());
         }
 
         static int GetNumber()
@@ -50,6 +115,7 @@ namespace GeniyIdiotConsoleApp
                 }
             }
         }
+
         static bool Repeat()
         {
             Console.Write("Провести повторное тестирование(да/нет)? ");
