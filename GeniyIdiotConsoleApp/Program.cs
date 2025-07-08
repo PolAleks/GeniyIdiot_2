@@ -40,7 +40,7 @@ namespace GeniyIdiotConsoleApp
             while (userChoice != 3);
         }
 
-        private static void ShowResults()
+        static void ShowResults()
         {
             Console.Clear();
 
@@ -115,6 +115,7 @@ namespace GeniyIdiotConsoleApp
                 }
             }
         }
+
         static bool Repeat()
         {
             Console.Write("Провести повторное тестирование(да/нет)? ");
