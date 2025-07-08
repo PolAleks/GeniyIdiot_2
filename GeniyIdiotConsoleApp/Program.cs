@@ -6,10 +6,43 @@ namespace GeniyIdiotConsoleApp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Меню:");
+            Console.WriteLine("1. Просмотр результатов тестирования");
+            Console.WriteLine("2. Начать тестирование");
+            Console.WriteLine("3. Выход");
+            Console.WriteLine("Выберите номер пункта меню: ");
+
+            var userChoice = GetNumber();
+            while (userChoice != 3)
+            {
+                switch (userChoice)
+                {
+                    case 1:
+                        ShowResults();
+                        break;
+                    case 2:
+                        StartTest();
+                        break;
+                    default:
+                        Console.Write("Некорректный выбор, доступный диапазон от 1 до 2!" +
+                                       Environment.NewLine +
+                                       "Выберите номер пункта меню: ");
+                        break;
+                }
+                userChoice = GetNumber();
+            }
+        }
+
+        private static void ShowResults()
+        {
+            throw new NotImplementedException();
+        }
+
+        static void StartTest()
+        {
             do
             {
                 (string[] question, int[] answer) = GetQuestions();
-
                 ShuffleQuestions(question, answer);
 
                 Console.Write("Напиши своё имя: ");
@@ -29,7 +62,7 @@ namespace GeniyIdiotConsoleApp
                 string diagnosis = GetDiagnosis(countCorrectUserAnswer, answer.Length);
 
                 Console.WriteLine($"{userName} твой диагноз - {diagnosis}");
-            }while (Repeat());
+            } while (Repeat());
         }
 
         static int GetNumber()
