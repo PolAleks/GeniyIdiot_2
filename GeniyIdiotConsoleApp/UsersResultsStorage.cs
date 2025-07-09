@@ -6,31 +6,26 @@ namespace GeniyIdiotConsoleApp
 {
     public class UsersResultsStorage
     {
-        private static string _file = Path.Combine(Environment.CurrentDirectory, "log.txt");
+        private static string _file = "log.txt";
 
         public static void Add(User user)
         {
-            using (StreamWriter sw = new StreamWriter(_file, true, System.Text.Encoding.Default))
-            {
-                sw.WriteLine(user.ToString());
-            }
+            FileProvider.Save(_file, user.ToString());
         }
 
         public static List<User> GetAll()
         {
+            var lines = FileProvider.Load(_file);
             List<User> users = new List<User>();
-            if (File.Exists(_file))
-            {
-                using (StreamReader sr = new StreamReader(_file, System.Text.Encoding.Default))
-                {
-                    while (!sr.EndOfStream)
-                    {
-                        var line = sr.ReadLine().Split('#');
-                        (string name, int countCorrectAnswer, string diagnosis) = (line[0], Convert.ToInt32(line[1]), line[2]);
-                        var user = new User(name, countCorrectAnswer, diagnosis);
 
-                        users.Add(user);
-                    }
+            if(lines != null)
+            {
+                foreach (var line in lines)
+                {
+                    var item = line.Split('#');
+                    (string name, int countCorrectAnswer, string diagnosis) = (item[0], Convert.ToInt32(item[1]), item[2]);
+                    
+                    users.Add(new User(name, countCorrectAnswer, diagnosis));
                 }
             }
             return users;
