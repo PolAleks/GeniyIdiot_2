@@ -9,7 +9,7 @@ namespace GeniyIdiotConsoleApp
 {
     public class FileProvider
     {
-        private static string _path = Environment.NewLine;
+        private static string _path = Environment.CurrentDirectory;
         public static List<string> Load(string file)
         {
             file = Path.Combine(_path, file);
