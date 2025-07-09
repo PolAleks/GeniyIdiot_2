@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
+using System.Xml.Schema;
 
 namespace GeniyIdiotConsoleApp
 {
@@ -18,9 +19,10 @@ namespace GeniyIdiotConsoleApp
                 Console.WriteLine("1. Просмотр результатов тестирования");
                 Console.WriteLine("2. Начать тестирование");
                 Console.WriteLine("3. Добавить новый вопрос");
-                Console.WriteLine("4. Выход");
+                Console.WriteLine("4. Удалить существующий вопрос");
+                Console.WriteLine("5. Выход");
                 Console.Write("Выберите номер пункта меню: ");
-                userChoice = GetNumber();
+                userChoice = GetNumber(1, 5);
 
                 switch (userChoice)
                 {
@@ -34,16 +36,35 @@ namespace GeniyIdiotConsoleApp
                         AddNewQuestion();
                         break;
                     case 4:
+                        DeleteQuestion();
                         break;
                     default:
-                        Console.Write("Некорректный выбор, доступный диапазон от 1 до 4!" +
-                                       Environment.NewLine +
-                                       "Выберите номер пункта меню: ");
-                        userChoice = GetNumber();
                         break;
                 }
             }
-            while (userChoice != 4);
+            while (userChoice != 5);
+        }
+
+        static void DeleteQuestion()
+        {
+            var questions = QuestionsStorage.GetAll();
+
+            Console.WriteLine("Список вопросов:");
+            for (int i = 0; i < questions.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {questions[i].Text}");
+            }
+
+            Console.WriteLine("Введите номер удаляемого вопроса: ");
+            int userChoise;
+
+            do
+            {
+                userChoise = GetNumber(1, questions.Count);
+            } 
+            while (userChoise < 1 || userChoise > questions.Count);
+
+            QuestionsStorage.Delete(questions[--userChoise]);
         }
 
         static void AddNewQuestion()
@@ -118,21 +139,23 @@ namespace GeniyIdiotConsoleApp
             } while (Repeat());
         }
 
-        static int GetNumber()
+        static int GetNumber(int minValue = int.MinValue, int maxValue = int.MaxValue)
         {
             while (true)
             {
                 try
                 {
-                    return Convert.ToInt32(Console.ReadLine());
+                    int value = Convert.ToInt32(Console.ReadLine());
+                    if (value < minValue || value > maxValue) throw new OverflowException();
+                    return value;
                 }
                 catch (FormatException)
                 {
-                    Console.Write("Для ответа, используйте числа от 0 до 9: ");
+                    Console.Write("Только цифры от 0 до 9! Повторите ввод: ");
                 }
                 catch (OverflowException)
                 {
-                    Console.Write($"Ответ  должен быть в диапазоне от {int.MinValue} до {int.MaxValue}: ");
+                    Console.Write($"Выбор должен быть в диапазоне от {minValue} до {maxValue}: ");
                 }
             }
         }
@@ -145,9 +168,9 @@ namespace GeniyIdiotConsoleApp
             {
                 Console.Write($"{question} Введите да или нет: ");
                 userConfirmation = Console.ReadLine().ToLower();
-            } 
+            }
             while (!(userConfirmation == "да" || userConfirmation == "нет"));
-            
+
             return userConfirmation.Equals("да");
         }
 

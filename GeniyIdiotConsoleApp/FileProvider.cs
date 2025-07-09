@@ -26,13 +26,23 @@ namespace GeniyIdiotConsoleApp
             return content;
         }
 
-        public static void Save(string file, string content)
+        public static void Save(string file, string content, bool append = true)
         {
             file = Path.Combine(_path, file);
-            using (StreamWriter sw = new StreamWriter(file, true, Encoding.Default))
+            using (StreamWriter sw = new StreamWriter(file, append, Encoding.Default))
             {
                 sw.WriteLine(content);
             }
+        }
+
+        internal static void Delete(string file, string content)
+        {
+            file = Path.Combine(_path, file);
+            var questions = Load(file);
+
+            questions.Remove(content);
+
+            Save(file, string.Join(Environment.NewLine,questions), false);
         }
 
         internal static bool Exists(string file)
