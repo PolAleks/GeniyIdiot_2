@@ -5,7 +5,7 @@ namespace GeniyIdiotConsoleApp
     public class QuestionsStorage
     {
         private static List<Question> _questions = new List<Question>();
-        public List<Question> GetAll()
+        public static List<Question> GetAll()
         {
             InitialQuestions();
             return _questions;

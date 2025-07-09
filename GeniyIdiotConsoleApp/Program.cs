@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace GeniyIdiotConsoleApp
@@ -49,7 +50,7 @@ namespace GeniyIdiotConsoleApp
             {
                 Console.WriteLine($"{"Имя",-15}{"Правильные ответы",18}{"Диагноз",15}");
 
-                var lines = File.ReadAllLines(file);
+                var lines = File.ReadAllLines(file, System.Text.Encoding.Default);
                 foreach (var line in lines)
                 {
                     var item = line.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
@@ -69,30 +70,34 @@ namespace GeniyIdiotConsoleApp
         {
             do
             {
-                (string[] question, int[] answer) = GetQuestions();
-                ShuffleQuestions(question, answer);
+                var questions = QuestionsStorage.GetAll();
+                ShuffleQuestions(questions);
 
                 Console.Write("Напиши своё имя: ");
                 var userName = Console.ReadLine();
+                User user = new User(userName);
 
-                int countCorrectUserAnswer = 0;
-                for (int i = 0; i < question.Length; i++)
+                for (int i = 0; i < questions.Count; i++)
                 {
                     Console.WriteLine($"Вопрос №{i + 1}:");
-                    Console.Write($"{question[i]}: ");
-                    var userAnswer = GetNumber();
-                    if (userAnswer == answer[i]) countCorrectUserAnswer++;
+                    Console.Write($"{questions[i].Text}: ");
+                    var userAnswer = GetNumber(); 
+
+                    if (userAnswer == questions[i].Answer) 
+                        user.AddCorrectAnswer();
                 }
 
-                Console.WriteLine("Количество правильных ответов - {0}", countCorrectUserAnswer);
+                Console.WriteLine("Количество правильных ответов - {0}", user.CountCorrectAnswer);
 
-                string diagnosis = GetDiagnosis(countCorrectUserAnswer, answer.Length);
+                user.AddDiagnosis(questions.Count);
 
-                Console.WriteLine($"{userName} твой диагноз - {diagnosis}");
+                Console.WriteLine($"{userName} твой диагноз - {user.Diagnosis}");
 
                 var file = Path.Combine(Environment.CurrentDirectory, "log.txt");
-                var result = $"{userName}#{countCorrectUserAnswer}#{diagnosis}";
-                File.AppendAllText(file, result);
+                using (StreamWriter sw = new StreamWriter(file, true, System.Text.Encoding.Default))
+                {
+                    sw.WriteLine($"{user.Name}#{user.CountCorrectAnswer}#{user.Diagnosis}");
+                }
 
             } while (Repeat());
         }
@@ -122,47 +127,15 @@ namespace GeniyIdiotConsoleApp
             return Console.ReadLine().ToLower().Equals("да");
         }
 
-        static void ShuffleQuestions(string[] question, int[] answer)
+        static void ShuffleQuestions(List<Question> questions)
         {
             Random rand = new Random();
-            for (int i = question.Length - 1; i > 0; i--)
+            for (int i = questions.Count - 1; i > 0; i--)
             {
                 int newIndex = rand.Next(i);
-                (question[i], question[newIndex]) = (question[newIndex], question[i]);
-                (answer[i], answer[newIndex]) = (answer[newIndex], answer[i]);
+                (questions[i].Text, questions[newIndex].Text) = (questions[newIndex].Text, questions[i].Text);
+                (questions[i].Answer, questions[newIndex].Answer) = (questions[newIndex].Answer, questions[i].Answer);
             }
-        }
-
-        static (string[], int[]) GetQuestions()
-        {
-            var question = new string[]
-            {
-                "Сколько будет два плюс два умноженное на два?",
-                "Бревно нужно распилить на 10 частей. Сколько распилов нужно сделать?",
-                "На двух руках 10 пальцев. Сколько пальцев на 5 руках?",
-                "Укол делают каждые полчаса. Сколько нужно минут, чтобы сделать три укола?",
-                "Пять свечей горело, две потухли. Сколько свечей осталось?",
-            };
-            var answer = new int[] { 6, 9, 25, 60, 2 };
-
-            return (question, answer);
-        }
-
-        static string GetDiagnosis(int countCorrectAnswer, int countAnswer)
-        {
-            var diagnosis = new string[]
-            {
-                "Кретин",
-                "Идиот",
-                "Дурак",
-                "Нормальный",
-                "Талант",
-                "Гений"
-            };
-
-            int percentage = (countCorrectAnswer / countAnswer) * 100;
-
-            return diagnosis[percentage / 20];
         }
     }
 }

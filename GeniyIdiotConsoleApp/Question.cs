@@ -2,15 +2,15 @@
 {
     public class Question
     {
-        string _text;
-        int _answer;
+        public int Answer { get ; set; }
+        public string Text { get ; set; }
 
         public Question(string text, int answer)
         {
-            _text = text;
-            _answer = answer;
+            Text = text;
+            Answer = answer;
         }
 
-        public override string ToString() => $"{_text}#{_answer}";
+        public override string ToString() => $"{Text}#{Answer}";
     }
 }
