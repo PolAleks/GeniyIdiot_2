@@ -64,6 +64,7 @@
     <Compile Include="Question.cs" />
     <Compile Include="QuestionsStorage.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UsersResultsStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Linq;
 
 namespace GeniyIdiotConsoleApp
 {
@@ -45,17 +46,14 @@ namespace GeniyIdiotConsoleApp
         {
             Console.Clear();
 
-            var file = Path.Combine(Environment.CurrentDirectory, "log.txt");
-            if (File.Exists(file))
+            var users = UsersResultsStorage.GetAll();
+            if (users != null)
             {
                 Console.WriteLine($"{"Имя",-15}{"Правильные ответы",18}{"Диагноз",15}");
-
-                var lines = File.ReadAllLines(file, System.Text.Encoding.Default);
-                foreach (var line in lines)
+                
+                foreach(var user in users)
                 {
-                    var item = line.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
-                    (string name, int countCorrectAnswer, string diagnosis) = (item[0], Convert.ToInt32(item[1]), item[2]);
-                    Console.WriteLine($"{name,-15}{countCorrectAnswer,10}{diagnosis,23}");
+                    Console.WriteLine($"{user.Name,-15}{user.CountCorrectAnswer,10}{user.Diagnosis,23}");
                 }
             }
             else
@@ -93,11 +91,7 @@ namespace GeniyIdiotConsoleApp
 
                 Console.WriteLine($"{userName} твой диагноз - {user.Diagnosis}");
 
-                var file = Path.Combine(Environment.CurrentDirectory, "log.txt");
-                using (StreamWriter sw = new StreamWriter(file, true, System.Text.Encoding.Default))
-                {
-                    sw.WriteLine($"{user.Name}#{user.CountCorrectAnswer}#{user.Diagnosis}");
-                }
+                UsersResultsStorage.Add(user);
 
             } while (Repeat());
         }
