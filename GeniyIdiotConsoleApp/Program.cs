@@ -17,7 +17,8 @@ namespace GeniyIdiotConsoleApp
                 Console.WriteLine("Меню:");
                 Console.WriteLine("1. Просмотр результатов тестирования");
                 Console.WriteLine("2. Начать тестирование");
-                Console.WriteLine("3. Выход");
+                Console.WriteLine("3. Добавить новый вопрос");
+                Console.WriteLine("4. Выход");
                 Console.Write("Выберите номер пункта меню: ");
                 userChoice = GetNumber();
 
@@ -30,16 +31,37 @@ namespace GeniyIdiotConsoleApp
                         StartTest();
                         break;
                     case 3:
+                        AddNewQuestion();
+                        break;
+                    case 4:
                         break;
                     default:
-                        Console.Write("Некорректный выбор, доступный диапазон от 1 до 3!" +
+                        Console.Write("Некорректный выбор, доступный диапазон от 1 до 4!" +
                                        Environment.NewLine +
                                        "Выберите номер пункта меню: ");
                         userChoice = GetNumber();
                         break;
                 }
             }
-            while (userChoice != 3);
+            while (userChoice != 4);
+        }
+
+        static void AddNewQuestion()
+        {
+            string textQuestion;
+            int answerQuestion;
+
+            do
+            {
+                Console.WriteLine("Введите текст вопроса:");
+                textQuestion = Console.ReadLine();
+
+                Console.WriteLine("Введите ответ на вопрос, значение должно быть числовым:");
+                answerQuestion = GetNumber();
+
+            } while (!Repeat("Все верно?"));
+
+            QuestionsStorage.Add(new Question(textQuestion, answerQuestion));
         }
 
         static void ShowResults()
@@ -50,8 +72,8 @@ namespace GeniyIdiotConsoleApp
             if (users != null)
             {
                 Console.WriteLine($"{"Имя",-15}{"Правильные ответы",18}{"Диагноз",15}");
-                
-                foreach(var user in users)
+
+                foreach (var user in users)
                 {
                     Console.WriteLine($"{user.Name,-15}{user.CountCorrectAnswer,10}{user.Diagnosis,23}");
                 }
@@ -60,8 +82,8 @@ namespace GeniyIdiotConsoleApp
             {
                 Console.WriteLine("Результаты ранее проведенных тестов отсутствуют!");
             }
-                Console.WriteLine("Для возвращения в меню, нажмите любую клавишу.");
-                Console.ReadKey();
+            Console.WriteLine("Для возвращения в меню, нажмите любую клавишу.");
+            Console.ReadKey();
         }
 
         static void StartTest()
@@ -79,9 +101,9 @@ namespace GeniyIdiotConsoleApp
                 {
                     Console.WriteLine($"Вопрос №{i + 1}:");
                     Console.Write($"{questions[i].Text}: ");
-                    var userAnswer = GetNumber(); 
+                    var userAnswer = GetNumber();
 
-                    if (questions[i].IsAnswerCorrect(userAnswer)) 
+                    if (questions[i].IsAnswerCorrect(userAnswer))
                         user.AddCorrectAnswer();
                 }
 
@@ -115,10 +137,18 @@ namespace GeniyIdiotConsoleApp
             }
         }
 
-        static bool Repeat()
+        static bool Repeat(string question = "Провести повторное тестирование?")
         {
-            Console.Write("Провести повторное тестирование(да/нет)? ");
-            return Console.ReadLine().ToLower().Equals("да");
+            string userConfirmation = string.Empty;
+
+            do
+            {
+                Console.Write($"{question} Введите да или нет: ");
+                userConfirmation = Console.ReadLine().ToLower();
+            } 
+            while (!(userConfirmation == "да" || userConfirmation == "нет"));
+            
+            return userConfirmation.Equals("да");
         }
 
         static void ShuffleQuestions(List<Question> questions)
