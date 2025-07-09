@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GeniyIdiotConsoleApp
 {
@@ -35,6 +33,12 @@ namespace GeniyIdiotConsoleApp
             {
                 sw.WriteLine(content);
             }
+        }
+
+        internal static bool Exists(string file)
+        {
+            file = Path.Combine(_path, file);
+            return File.Exists(file);
         }
     }
 }

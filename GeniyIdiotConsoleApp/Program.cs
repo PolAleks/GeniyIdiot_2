@@ -43,7 +43,7 @@ namespace GeniyIdiotConsoleApp
                         break;
                 }
             }
-            while (userChoice != 3);
+            while (userChoice != 4);
         }
 
         static void AddNewQuestion()
@@ -59,7 +59,7 @@ namespace GeniyIdiotConsoleApp
                 Console.WriteLine("Введите ответ на вопрос, значение должно быть числовым:");
                 answerQuestion = GetNumber();
 
-            } while (Repeat("Все верно?"));
+            } while (!Repeat("Все верно?"));
 
             QuestionsStorage.Add(new Question(textQuestion, answerQuestion));
         }
@@ -146,7 +146,7 @@ namespace GeniyIdiotConsoleApp
                 Console.Write($"{question} Введите да или нет: ");
                 userConfirmation = Console.ReadLine().ToLower();
             } 
-            while (userConfirmation == "да" || userConfirmation == "нет");
+            while (!(userConfirmation == "да" || userConfirmation == "нет"));
             
             return userConfirmation.Equals("да");
         }
