@@ -81,7 +81,7 @@ namespace GeniyIdiotConsoleApp
                     Console.Write($"{questions[i].Text}: ");
                     var userAnswer = GetNumber(); 
 
-                    if (userAnswer == questions[i].Answer) 
+                    if (questions[i].IsAnswerCorrect(userAnswer)) 
                         user.AddCorrectAnswer();
                 }
 

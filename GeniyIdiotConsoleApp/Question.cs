@@ -10,7 +10,7 @@
             Text = text;
             Answer = answer;
         }
-
+        public bool IsAnswerCorrect(int answer) => Answer == answer;
         public override string ToString() => $"{Text}#{Answer}";
     }
 }
