@@ -34,6 +34,11 @@ namespace GeniyIdiotConsoleApp
             FileProvider.Save(_file, question.ToString());
         }
 
+        internal static void Delete(Question question)
+        {
+            FileProvider.Delete(_file, question.ToString());
+        }
+
         private static void InitialQuestions()
         {
             var questions = new List<Question>
