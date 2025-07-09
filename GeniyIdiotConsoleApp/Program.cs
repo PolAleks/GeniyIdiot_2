@@ -18,7 +18,8 @@ namespace GeniyIdiotConsoleApp
                 Console.WriteLine("1. Просмотр результатов тестирования");
                 Console.WriteLine("2. Начать тестирование");
                 Console.WriteLine("3. Добавить новый вопрос");
-                Console.WriteLine("4. Выход");
+                Console.WriteLine("4. Удалить существующий вопрос");
+                Console.WriteLine("5. Выход");
                 Console.Write("Выберите номер пункта меню: ");
                 userChoice = GetNumber();
 
@@ -34,6 +35,9 @@ namespace GeniyIdiotConsoleApp
                         AddNewQuestion();
                         break;
                     case 4:
+                        DeleteQuestion();
+                        break;
+                    case 5:
                         break;
                     default:
                         Console.Write("Некорректный выбор, доступный диапазон от 1 до 4!" +
@@ -43,7 +47,12 @@ namespace GeniyIdiotConsoleApp
                         break;
                 }
             }
-            while (userChoice != 4);
+            while (userChoice != 5);
+        }
+
+        static void DeleteQuestion()
+        {
+            throw new NotImplementedException();
         }
 
         static void AddNewQuestion()
@@ -145,9 +154,9 @@ namespace GeniyIdiotConsoleApp
             {
                 Console.Write($"{question} Введите да или нет: ");
                 userConfirmation = Console.ReadLine().ToLower();
-            } 
+            }
             while (!(userConfirmation == "да" || userConfirmation == "нет"));
-            
+
             return userConfirmation.Equals("да");
         }
 
