@@ -106,5 +106,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeniyIdiot.Common\GeniyIdiot.Common.csproj">
+      <Project>{6a6d5cbd-e035-476e-ad1b-3aa42679d7c1}</Project>
+      <Name>GeniyIdiot.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
