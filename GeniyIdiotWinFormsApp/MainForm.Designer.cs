@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.numberQuestionLabel = new System.Windows.Forms.Label();
-            this.textQuestionLabel = new System.Windows.Forms.Label();
+            this.questionNumberLabe = new System.Windows.Forms.Label();
+            this.questionTextLabel = new System.Windows.Forms.Label();
             this.answerTextBox = new System.Windows.Forms.TextBox();
             this.nextButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // numberQuestionLabel
             // 
-            this.numberQuestionLabel.AutoSize = true;
-            this.numberQuestionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numberQuestionLabel.Location = new System.Drawing.Point(76, 52);
-            this.numberQuestionLabel.Name = "numberQuestionLabel";
-            this.numberQuestionLabel.Size = new System.Drawing.Size(92, 20);
-            this.numberQuestionLabel.TabIndex = 0;
-            this.numberQuestionLabel.Text = "Вопрос №1";
+            this.questionNumberLabe.AutoSize = true;
+            this.questionNumberLabe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.questionNumberLabe.Location = new System.Drawing.Point(76, 52);
+            this.questionNumberLabe.Name = "numberQuestionLabel";
+            this.questionNumberLabe.Size = new System.Drawing.Size(92, 20);
+            this.questionNumberLabe.TabIndex = 0;
+            this.questionNumberLabe.Text = "Вопрос №1";
             // 
             // textQuestionLabel
             // 
-            this.textQuestionLabel.AutoSize = true;
-            this.textQuestionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textQuestionLabel.Location = new System.Drawing.Point(76, 95);
-            this.textQuestionLabel.Name = "textQuestionLabel";
-            this.textQuestionLabel.Size = new System.Drawing.Size(118, 20);
-            this.textQuestionLabel.TabIndex = 1;
-            this.textQuestionLabel.Text = "Текст вопроса";
+            this.questionTextLabel.AutoSize = true;
+            this.questionTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.questionTextLabel.Location = new System.Drawing.Point(76, 95);
+            this.questionTextLabel.Name = "textQuestionLabel";
+            this.questionTextLabel.Size = new System.Drawing.Size(118, 20);
+            this.questionTextLabel.TabIndex = 1;
+            this.questionTextLabel.Text = "Текст вопроса";
             // 
             // answerTextBox
             // 
@@ -79,8 +79,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.answerTextBox);
-            this.Controls.Add(this.textQuestionLabel);
-            this.Controls.Add(this.numberQuestionLabel);
+            this.Controls.Add(this.questionTextLabel);
+            this.Controls.Add(this.questionNumberLabe);
             this.Name = "MainForm";
             this.Text = "Гений Идиот";
             this.ResumeLayout(false);
@@ -90,8 +90,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label numberQuestionLabel;
-        private System.Windows.Forms.Label textQuestionLabel;
+        private System.Windows.Forms.Label questionNumberLabe;
+        private System.Windows.Forms.Label questionTextLabel;
         private System.Windows.Forms.TextBox answerTextBox;
         private System.Windows.Forms.Button nextButton;
     }

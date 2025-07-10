@@ -13,13 +13,13 @@ namespace GeniyIdiotWinFormsApp
         private int _numberCurrentQuestion = 1;
         private int _countQuestions;
         private User _user;
-        public MainForm()
+        public MainForm(string name)
         {
             InitializeComponent();
 
             _questions = QuestionsStorage.GetAll();
             _countQuestions = _questions.Count;
-            _user = new User("Инкогнито");
+            _user = new User(name);
 
             GetNextQuestion();
         }
@@ -53,8 +53,9 @@ namespace GeniyIdiotWinFormsApp
             _currentQuestion = _questions[index];
             _questions.Remove(_currentQuestion);
 
-            numberQuestionLabel.Text = $"Вопрос № {_numberCurrentQuestion++}";
-            textQuestionLabel.Text = _currentQuestion.Text;
+            questionNumberLabe.Text = $"Вопрос № {_numberCurrentQuestion++}";
+            questionTextLabel.Text = _currentQuestion.Text;
+
             answerTextBox.Text = string.Empty;
             answerTextBox.Focus();
         }
