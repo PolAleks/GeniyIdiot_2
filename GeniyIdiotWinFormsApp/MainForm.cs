@@ -59,5 +59,15 @@ namespace GeniyIdiotWinFormsApp
             answerTextBox.Text = string.Empty;
             answerTextBox.Focus();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
     }
 }
