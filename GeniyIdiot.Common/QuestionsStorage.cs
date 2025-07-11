@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GeniyIdiotConsoleApp
+namespace GeniyIdiot.Common
 {
     public class QuestionsStorage
     {
@@ -29,12 +29,12 @@ namespace GeniyIdiotConsoleApp
             return questions;
         }
 
-        internal static void Add(Question question)
+        public static void Add(Question question)
         {
             FileProvider.Save(_file, question.ToString());
         }
 
-        internal static void Delete(Question question)
+        public static void Delete(Question question)
         {
             FileProvider.Delete(_file, question.ToString());
         }
