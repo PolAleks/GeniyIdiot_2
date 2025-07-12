@@ -103,6 +103,7 @@
             this.showResultsToolStripMenuItem.Name = "showResultsToolStripMenuItem";
             this.showResultsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.showResultsToolStripMenuItem.Text = "Показать результаты";
+            this.showResultsToolStripMenuItem.Click += new System.EventHandler(this.showResultsToolStripMenuItem_Click);
             // 
             // restartToolStripMenuItem
             // 

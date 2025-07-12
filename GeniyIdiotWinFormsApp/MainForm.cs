@@ -69,5 +69,11 @@ namespace GeniyIdiotWinFormsApp
         {
             Application.Restart();
         }
+
+        private void showResultsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var resultsForm = new ResultsForm();
+            resultsForm.ShowDialog();
+        }
     }
 }
