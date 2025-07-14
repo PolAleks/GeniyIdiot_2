@@ -115,7 +115,7 @@ namespace GeniyIdiotConsoleApp
             var test = new TestManager(user);
             test.OnNextQuestion += q =>
             {
-                Console.Write($"Вопрос №{test.NumberQuestion}");
+                Console.WriteLine($"Вопрос №{q.Number}");
                 Console.Write($"{q.Text}: ");
             };
 
