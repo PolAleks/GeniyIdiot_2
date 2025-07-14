@@ -9,11 +9,11 @@ namespace GeniyIdiotWinFormsApp
     public partial class MainForm : Form
     {
         private TestManager _testManager;
-        
+
         public MainForm(string name)
         {
             InitializeComponent();
-            
+
             _testManager = new TestManager(new User(name));
 
             _testManager.OnNextQuestion += q =>
@@ -33,16 +33,25 @@ namespace GeniyIdiotWinFormsApp
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
             };
-           
+
             _testManager.Start();
         }
 
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            _testManager.SubmitAnswer(Convert.ToInt32(answerTextBox.Text));
+            if (int.TryParse(answerTextBox.Text, out int answer))
+            {
+                _testManager.SubmitAnswer(answer);
+            }
+            else
+            {
+                MessageBox.Show("Принимается, только числовой ответ!", "Ошибка ввода", MessageBoxButtons.OK);
+                answerTextBox.Text = string.Empty;
+                answerTextBox.Focus();
+            }
         }
-        
+
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
