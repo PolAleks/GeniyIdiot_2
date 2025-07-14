@@ -54,11 +54,10 @@ namespace GeniyIdiot.Common
                 var curentIndex = random.Next(_questions.Count);
                 _currentQuestion = _questions[curentIndex];
                 _questions.RemoveAt(curentIndex);
-                _currentIndexQuestion++;
+                _currentQuestion.Number = ++_currentIndexQuestion;
                 return _currentQuestion;
             }
             return null;
         }
-
     }
 }
