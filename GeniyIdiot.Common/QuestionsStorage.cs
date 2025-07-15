@@ -34,7 +34,14 @@ namespace GeniyIdiot.Common
 
         public static void Delete(Question question)
         {
-            //FileProvider.Delete(_file, question.ToString());
+            if (question == null)
+                return;
+
+            var questions = GetAll();
+            if (questions.Remove(question))
+            {
+                Save(questions);
+            }
         }
 
         static List<Question> InitialQuestions()
