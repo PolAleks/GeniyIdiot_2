@@ -40,13 +40,14 @@ namespace GeniyIdiotWinFormsApp
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(answerTextBox.Text, out int answer))
+            bool isValidAnswer = InputValidator.TryParseNumber(answerTextBox.Text, out int answer, out string errorMessage);
+            if (isValidAnswer)
             {
                 _testManager.SubmitAnswer(answer);
             }
             else
             {
-                MessageBox.Show("Принимается, только числовой ответ!", "Ошибка ввода", MessageBoxButtons.OK);
+                MessageBox.Show(errorMessage, "Ошибка ввода", MessageBoxButtons.OK);
                 answerTextBox.Text = string.Empty;
                 answerTextBox.Focus();
             }
