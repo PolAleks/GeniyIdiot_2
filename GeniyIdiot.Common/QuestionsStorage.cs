@@ -27,7 +27,9 @@ namespace GeniyIdiot.Common
 
         public static void Add(Question question)
         {
-            FileProvider.Save(_file, question.ToString());
+            var questions = GetAll();
+            questions.Add(question);
+            Save(questions);
         }
 
         public static void Delete(Question question)
@@ -46,10 +48,14 @@ namespace GeniyIdiot.Common
                 new Question("Пять свечей горело, две потухли. Сколько свечей осталось?", 2)
             };
 
+            Save(questions);
+            return questions;
+        }
+
+        static void Save(List<Question> questions)
+        {
             var content = JsonConvert.SerializeObject(questions, Formatting.Indented);
             FileProvider.Save(_file, content, false);
-
-            return questions;
         }
     }
 }
