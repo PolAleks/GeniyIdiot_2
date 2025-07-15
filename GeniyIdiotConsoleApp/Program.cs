@@ -140,23 +140,16 @@ namespace GeniyIdiotConsoleApp
 
         static int GetNumber(int minValue = int.MinValue, int maxValue = int.MaxValue)
         {
-            while (true)
+            int number;
+            while (!InputValidator.TryParseNumber(Console.ReadLine(),
+                                                  out number,
+                                                  out string errorMessage,
+                                                  minValue,
+                                                  maxValue))
             {
-                try
-                {
-                    int value = Convert.ToInt32(Console.ReadLine());
-                    if (value < minValue || value > maxValue) throw new OverflowException();
-                    return value;
-                }
-                catch (FormatException)
-                {
-                    Console.Write("Только цифры от 0 до 9! Повторите ввод: ");
-                }
-                catch (OverflowException)
-                {
-                    Console.Write($"Выбор должен быть в диапазоне от {minValue} до {maxValue}: ");
-                }
+                Console.WriteLine(errorMessage);
             }
+            return number;
         }
 
         static bool Repeat(string question = "Провести повторное тестирование?")
