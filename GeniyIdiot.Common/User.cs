@@ -2,18 +2,13 @@
 {
     public class User
     {
-        public User(string name)
-        {
-            Name = name;
-            CountCorrectAnswer = 0;
-            Diagnosis = "неизвестно";
-        }
+        public User() { }
+        public User(string name) => Name = name;
 
-        public User(string name, int countCorrectAnswer, string diagnosis) : this(name)
-        {
-            CountCorrectAnswer = countCorrectAnswer;
-            Diagnosis = diagnosis;
-        }
+        public string Name { get; set; }
+        public int CountCorrectAnswer { get; set; }
+        public string Diagnosis { get; set; }
+
 
         public void AddCorrectAnswer() => CountCorrectAnswer++;
         public void AddDiagnosis(int countQuestions)
@@ -34,10 +29,5 @@
 
             Diagnosis = diagnosis[(int)percentage / 20];
         }
-        public override string ToString() => $"{Name}#{CountCorrectAnswer}#{Diagnosis}";
-
-        public string Name { get; set; }
-        public int CountCorrectAnswer { get; set; }
-        public string Diagnosis { get; set; }
     }
 }
