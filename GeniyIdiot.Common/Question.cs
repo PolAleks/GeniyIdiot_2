@@ -1,6 +1,8 @@
-﻿namespace GeniyIdiot.Common
+﻿using System;
+
+namespace GeniyIdiot.Common
 {
-    public class Question
+    public class Question : IEquatable<Question>
     {
         public string Text { get ; set; }
         public int Answer { get ; set; }
@@ -12,6 +14,11 @@
             Text = text;
             Answer = answer;
         }
-        public bool IsAnswerCorrect(int answer) => Answer == answer;        
+        public bool IsAnswerCorrect(int answer) => Answer == answer;
+
+        public bool Equals(Question other)
+        {
+            return Text.Equals(other.Text) && Answer.Equals(other.Answer);
+        }
     }
 }
