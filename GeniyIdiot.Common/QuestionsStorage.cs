@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,7 @@ namespace GeniyIdiot.Common
 {
     public class QuestionsStorage
     {
-        private static string _file = "question.txt";
+        private static string _file = "question.json";
 
         public static List<Question> GetAll()
         {
@@ -14,17 +15,12 @@ namespace GeniyIdiot.Common
 
             if (FileProvider.Exists(_file))
             {
-                var lines = FileProvider.Load(_file);
-                foreach (var line in lines)
-                {
-                    var item = line.Split(new char[]{ '#' }, StringSplitOptions.RemoveEmptyEntries);
-                    (string text, int answer) = (item[0], Convert.ToInt32(item[1]));
-                    questions.Add(new Question(text, answer));
-                }
+                var content = FileProvider.Load(_file);
+                questions = JsonConvert.DeserializeObject<List<Question>>(content);
             }
             else
             {
-                InitialQuestions();
+                questions = InitialQuestions();
             }
             return questions;
         }
@@ -36,10 +32,10 @@ namespace GeniyIdiot.Common
 
         public static void Delete(Question question)
         {
-            FileProvider.Delete(_file, question.ToString());
+            //FileProvider.Delete(_file, question.ToString());
         }
 
-        private static void InitialQuestions()
+        static List<Question> InitialQuestions()
         {
             var questions = new List<Question>
             {
@@ -50,13 +46,10 @@ namespace GeniyIdiot.Common
                 new Question("Пять свечей горело, две потухли. Сколько свечей осталось?", 2)
             };
 
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (var item in questions)
-            {
-                stringBuilder.AppendLine(item.ToString());
-            }
-            
-            FileProvider.Save(_file, stringBuilder.ToString().Trim());
+            var content = JsonConvert.SerializeObject(questions, Formatting.Indented);
+            FileProvider.Save(_file, content, false);
+
+            return questions;
         }
     }
 }
