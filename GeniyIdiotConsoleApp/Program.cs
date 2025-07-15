@@ -1,6 +1,7 @@
 ﻿using GeniyIdiot.Common;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GeniyIdiotConsoleApp
 {
@@ -88,7 +89,7 @@ namespace GeniyIdiotConsoleApp
             Console.Clear();
 
             var users = UsersResultsStorage.GetAll();
-            if (users != null)
+            if (users.Any())
             {
                 Console.WriteLine($"{"Имя",-15}{"Правильные ответы",18}{"Диагноз",15}");
 
