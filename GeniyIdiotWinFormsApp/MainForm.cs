@@ -8,57 +8,51 @@ namespace GeniyIdiotWinFormsApp
 {
     public partial class MainForm : Form
     {
-        private List<Question> _questions;
-        private Question _currentQuestion;
-        private int _numberCurrentQuestion = 1;
-        private int _countQuestions;
-        private User _user;
+        private TestManager _testManager;
+
         public MainForm(string name)
         {
             InitializeComponent();
 
-            _questions = QuestionsStorage.GetAll();
-            _countQuestions = _questions.Count;
-            _user = new User(name);
+            _testManager = new TestManager(new User(name));
 
-            GetNextQuestion();
+            _testManager.OnNextQuestion += q =>
+            {
+                questionNumberLabe.Text = $"Вопрос № {q.Number}";
+                questionTextLabel.Text = q.Text;
+
+                answerTextBox.Text = string.Empty;
+                answerTextBox.Focus();
+            };
+
+            _testManager.OnCompliteTest += u =>
+            {
+                nextButton.Enabled = false;
+                MessageBox.Show($"{u.Name} твой диагноз - {u.Diagnosis}",
+                                "Результат тестирования",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            };
+
+            _testManager.Start();
         }
 
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            var userAnswer = Convert.ToInt32(answerTextBox.Text);
-            if (_currentQuestion.IsAnswerCorrect(userAnswer))
-                _user.AddCorrectAnswer();
-
-            if(_questions.Count == 0)
+            bool isValidAnswer = InputValidator.TryParseNumber(answerTextBox.Text, out int answer, out string errorMessage);
+            if (isValidAnswer)
             {
-                nextButton.Enabled = false;
-                _user.AddDiagnosis(_countQuestions);
-                UsersResultsStorage.Add(_user);
-                MessageBox.Show($"{_user.Name} твой диагноз - {_user.Diagnosis}",
-                                "Результат тестирования",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                _testManager.SubmitAnswer(answer);
             }
-            else 
-            { 
-                GetNextQuestion();
+            else
+            {
+                MessageBox.Show(errorMessage, "Ошибка ввода", MessageBoxButtons.OK);
+                answerTextBox.Text = string.Empty;
+                answerTextBox.Focus();
             }
         }
-        private void GetNextQuestion()
-        {
-            Random random = new Random();
-            var index = random.Next(_questions.Count);
-            _currentQuestion = _questions[index];
-            _questions.Remove(_currentQuestion);
 
-            questionNumberLabe.Text = $"Вопрос № {_numberCurrentQuestion++}";
-            questionTextLabel.Text = _currentQuestion.Text;
-
-            answerTextBox.Text = string.Empty;
-            answerTextBox.Focus();
-        }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -75,5 +69,6 @@ namespace GeniyIdiotWinFormsApp
             var resultsForm = new ResultsForm();
             resultsForm.ShowDialog();
         }
+
     }
 }

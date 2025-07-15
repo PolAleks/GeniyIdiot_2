@@ -5,6 +5,8 @@
         public int Answer { get ; set; }
         public string Text { get ; set; }
 
+        public int Number { get; set; } = 0;
+
         public Question(string text, int answer)
         {
             Text = text;

@@ -59,7 +59,7 @@ namespace GeniyIdiotConsoleApp
             do
             {
                 userChoise = GetNumber(1, questions.Count);
-            } 
+            }
             while (userChoise < 1 || userChoise > questions.Count);
 
             QuestionsStorage.Delete(questions[--userChoise]);
@@ -107,55 +107,49 @@ namespace GeniyIdiotConsoleApp
 
         static void StartTest()
         {
+            Console.Write("Напиши своё имя: ");
+            var userName = Console.ReadLine();
+
+            User user = new User(userName);
+
+            var test = new TestManager(user);
+            test.OnNextQuestion += q =>
+            {
+                Console.WriteLine($"Вопрос №{q.Number}");
+                Console.Write($"{q.Text}: ");
+            };
+
+            test.OnCompliteTest += u =>
+            {
+                Console.WriteLine("Количество правильных ответов - {0}", u.CountCorrectAnswer);
+                Console.WriteLine($"{u.Name} твой диагноз - {u.Diagnosis}");
+            };
+
+            test.Start();
+
             do
             {
-                var questions = QuestionsStorage.GetAll();
-                ShuffleQuestions(questions);
-
-                Console.Write("Напиши своё имя: ");
-                var userName = Console.ReadLine();
-                User user = new User(userName);
-
-                for (int i = 0; i < questions.Count; i++)
+                bool isNextQuestion = true;
+                while (isNextQuestion)
                 {
-                    Console.WriteLine($"Вопрос №{i + 1}:");
-                    Console.Write($"{questions[i].Text}: ");
-                    var userAnswer = GetNumber();
-
-                    if (questions[i].IsAnswerCorrect(userAnswer))
-                        user.AddCorrectAnswer();
+                    isNextQuestion = test.SubmitAnswer(GetNumber());
                 }
-
-                Console.WriteLine("Количество правильных ответов - {0}", user.CountCorrectAnswer);
-
-                user.AddDiagnosis(questions.Count);
-
-                Console.WriteLine($"{userName} твой диагноз - {user.Diagnosis}");
-
-                UsersResultsStorage.Add(user);
 
             } while (Repeat());
         }
 
         static int GetNumber(int minValue = int.MinValue, int maxValue = int.MaxValue)
         {
-            while (true)
+            int number;
+            while (!InputValidator.TryParseNumber(Console.ReadLine(),
+                                                  out number,
+                                                  out string errorMessage,
+                                                  minValue,
+                                                  maxValue))
             {
-                try
-                {
-                    int value = Convert.ToInt32(Console.ReadLine());
-                    if (value < minValue || value > maxValue) throw new OverflowException();
-                    return value;
-                }
-                catch (FormatException)
-                {
-                    Console.Write("Только цифры от 0 до 9! Повторите ввод: ");
-                }
-                catch (OverflowException)
-                {
-                    Console.Write($"Выбор должен быть в диапазоне от {minValue} до {maxValue}: ");
-                }
+                Console.WriteLine(errorMessage);
             }
+            return number;
         }
 
         static bool Repeat(string question = "Провести повторное тестирование?")
