@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.questionsDataGridView = new System.Windows.Forms.DataGridView();
             this.textQuestionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.answerQuestionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.questionsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,28 +41,42 @@
             this.questionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.questionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.textQuestionColumn,
-            this.answerQuestionColumn});
+            this.answerQuestionColumn,
+            this.deleteBtn});
             this.questionsDataGridView.Location = new System.Drawing.Point(0, -1);
             this.questionsDataGridView.Name = "questionsDataGridView";
-            this.questionsDataGridView.Size = new System.Drawing.Size(694, 243);
+            this.questionsDataGridView.Size = new System.Drawing.Size(695, 243);
             this.questionsDataGridView.TabIndex = 0;
+            this.questionsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.questionsDataGridView_CellContentClick);
             // 
             // textQuestionColumn
             // 
             this.textQuestionColumn.HeaderText = "Вопрос";
             this.textQuestionColumn.Name = "textQuestionColumn";
-            this.textQuestionColumn.Width = 550;
+            this.textQuestionColumn.Width = 450;
             // 
             // answerQuestionColumn
             // 
             this.answerQuestionColumn.HeaderText = "Ответ";
             this.answerQuestionColumn.Name = "answerQuestionColumn";
             // 
+            // deleteBtn
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            this.deleteBtn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.deleteBtn.HeaderText = "Удаление";
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Text = "Удалить";
+            this.deleteBtn.UseColumnTextForButtonValue = true;
+            // 
             // QuestionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 299);
+            this.ClientSize = new System.Drawing.Size(695, 244);
             this.Controls.Add(this.questionsDataGridView);
             this.Name = "QuestionsForm";
             this.Text = "QuestionsForm";
@@ -75,5 +91,6 @@
         private System.Windows.Forms.DataGridView questionsDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn textQuestionColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn answerQuestionColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn deleteBtn;
     }
 }
