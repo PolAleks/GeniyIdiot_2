@@ -70,5 +70,10 @@ namespace GeniyIdiotWinFormsApp
             resultsForm.ShowDialog();
         }
 
+        private void showQuestionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var questionsForm = new QuestionsForm();
+            questionsForm.ShowDialog();
+        }
     }
 }

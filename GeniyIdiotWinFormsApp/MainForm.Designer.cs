@@ -35,6 +35,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showQuestionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -92,6 +93,7 @@
             // 
             this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showResultsToolStripMenuItem,
+            this.showQuestionsToolStripMenuItem,
             this.restartToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
@@ -104,6 +106,13 @@
             this.showResultsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.showResultsToolStripMenuItem.Text = "Показать результаты";
             this.showResultsToolStripMenuItem.Click += new System.EventHandler(this.showResultsToolStripMenuItem_Click);
+            // 
+            // showQuestionsToolStripMenuItem
+            // 
+            this.showQuestionsToolStripMenuItem.Name = "showQuestionsToolStripMenuItem";
+            this.showQuestionsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.showQuestionsToolStripMenuItem.Text = "Показать вопросы";
+            this.showQuestionsToolStripMenuItem.Click += new System.EventHandler(this.showQuestionsToolStripMenuItem_Click);
             // 
             // restartToolStripMenuItem
             // 
@@ -150,6 +159,7 @@
         private System.Windows.Forms.ToolStripMenuItem showResultsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showQuestionsToolStripMenuItem;
     }
 }
 

@@ -38,7 +38,6 @@
             // resultsDataGridView
             // 
             this.resultsDataGridView.AllowUserToAddRows = false;
-            this.resultsDataGridView.AllowUserToDeleteRows = false;
             this.resultsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.resultsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.userNameColumn,
@@ -47,7 +46,7 @@
             this.resultsDataGridView.Location = new System.Drawing.Point(3, 12);
             this.resultsDataGridView.Name = "resultsDataGridView";
             this.resultsDataGridView.ReadOnly = true;
-            this.resultsDataGridView.Size = new System.Drawing.Size(395, 229);
+            this.resultsDataGridView.Size = new System.Drawing.Size(395, 221);
             this.resultsDataGridView.TabIndex = 0;
             // 
             // userNameColumn
@@ -73,7 +72,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 243);
+            this.ClientSize = new System.Drawing.Size(401, 317);
             this.Controls.Add(this.resultsDataGridView);
             this.Name = "ResultsForm";
             this.Text = "Результаты предыдущих тестирований";
