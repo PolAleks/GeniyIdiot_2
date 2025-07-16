@@ -59,7 +59,7 @@ namespace GeniyIdiot.Common
             return questions;
         }
 
-        static void Save(List<Question> questions)
+        public static void Save(List<Question> questions)
         {
             var content = JsonConvert.SerializeObject(questions, Formatting.Indented);
             FileProvider.Save(_file, content, false);
