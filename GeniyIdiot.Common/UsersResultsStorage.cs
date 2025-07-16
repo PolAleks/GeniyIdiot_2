@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -6,28 +7,26 @@ namespace GeniyIdiot.Common
 {
     public class UsersResultsStorage
     {
-        private static string _file = "log.txt";
+        private static string _file = "log.json";
 
         public static void Add(User user)
         {
-            FileProvider.Save(_file, user.ToString());
+            var users = GetAll();
+            users.Add(user);    
+            var content = JsonConvert.SerializeObject(users, Formatting.Indented);
+
+            FileProvider.Save(_file, content, false);
         }
 
         public static List<User> GetAll()
         {
-            var lines = FileProvider.Load(_file);
-            List<User> users = new List<User>();
-
-            if(lines != null)
+            if(!FileProvider.Exists(_file))
             {
-                foreach (var line in lines)
-                {
-                    var item = line.Split('#');
-                    (string name, int countCorrectAnswer, string diagnosis) = (item[0], Convert.ToInt32(item[1]), item[2]);
-                    
-                    users.Add(new User(name, countCorrectAnswer, diagnosis));
-                }
+                return new List<User>();
             }
+
+            var content = FileProvider.Load(_file);
+            List<User> users = JsonConvert.DeserializeObject<List<User>>(content);
             return users;
         }
     }
