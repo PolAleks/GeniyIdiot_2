@@ -31,7 +31,7 @@ namespace GeniyIdiotWinFormsApp
         private void questionsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
-            if (questionsDataGridView.Rows.Count > 1 && _questions.Count > index)
+            if (questionsDataGridView.Rows.Count > 0 && _questions.Count > index)
             {
                 questionsDataGridView.Rows.RemoveAt(index);
                 _questions.RemoveAt(index);

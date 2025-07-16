@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.questionsDataGridView = new System.Windows.Forms.DataGridView();
             this.textQuestionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.answerQuestionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +38,7 @@
             // 
             // questionsDataGridView
             // 
+            this.questionsDataGridView.AllowUserToAddRows = false;
             this.questionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.questionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.textQuestionColumn,
@@ -45,7 +46,8 @@
             this.deleteBtn});
             this.questionsDataGridView.Location = new System.Drawing.Point(0, -1);
             this.questionsDataGridView.Name = "questionsDataGridView";
-            this.questionsDataGridView.Size = new System.Drawing.Size(695, 243);
+            this.questionsDataGridView.RowHeadersVisible = false;
+            this.questionsDataGridView.Size = new System.Drawing.Size(705, 246);
             this.questionsDataGridView.TabIndex = 0;
             this.questionsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.questionsDataGridView_CellContentClick);
             // 
@@ -53,7 +55,7 @@
             // 
             this.textQuestionColumn.HeaderText = "Вопрос";
             this.textQuestionColumn.Name = "textQuestionColumn";
-            this.textQuestionColumn.Width = 450;
+            this.textQuestionColumn.Width = 500;
             // 
             // answerQuestionColumn
             // 
@@ -62,10 +64,12 @@
             // 
             // deleteBtn
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            this.deleteBtn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.deleteBtn.DefaultCellStyle = dataGridViewCellStyle5;
             this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.deleteBtn.HeaderText = "Удаление";
             this.deleteBtn.Name = "deleteBtn";
@@ -76,9 +80,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 244);
+            this.ClientSize = new System.Drawing.Size(706, 244);
             this.Controls.Add(this.questionsDataGridView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "QuestionsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QuestionsForm";
             this.Load += new System.EventHandler(this.QuestionsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.questionsDataGridView)).EndInit();

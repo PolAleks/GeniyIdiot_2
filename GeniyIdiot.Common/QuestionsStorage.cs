@@ -17,6 +17,9 @@ namespace GeniyIdiot.Common
             {
                 var content = FileProvider.Load(_file);
                 questions = JsonConvert.DeserializeObject<List<Question>>(content);
+
+                if (questions.Count == 0)
+                    questions = InitialQuestions();
             }
             else
             {
