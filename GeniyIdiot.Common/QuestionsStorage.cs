@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GeniyIdiot.Common
@@ -66,6 +67,17 @@ namespace GeniyIdiot.Common
         {
             var content = JsonConvert.SerializeObject(questions, Formatting.Indented);
             FileProvider.Save(_file, content, false);
+        }
+
+        public static void Update(Question question)
+        {
+            var questions = GetAll();
+            var updateQuestion = questions.FirstOrDefault(q => q.Id.Equals(question.Id));
+
+            updateQuestion.Text = question.Text;
+            updateQuestion.Answer = question.Answer;
+
+            Save(questions);
         }
     }
 }
