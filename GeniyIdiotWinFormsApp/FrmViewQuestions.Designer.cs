@@ -1,0 +1,163 @@
+﻿namespace GeniyIdiotWinFormsApp
+{
+    partial class FrmViewQuestions
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.contextMenuStripForGrid = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.MenuItemRemoveQuestion = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemEditQuestion = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewQuestions = new System.Windows.Forms.DataGridView();
+            this.groupBoxAddNewQuestion = new System.Windows.Forms.GroupBox();
+            this.labelTextQuestion = new System.Windows.Forms.Label();
+            this.labelAnswerQuestion = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxAnswerQuestion = new System.Windows.Forms.TextBox();
+            this.buttonAddNewQuestion = new System.Windows.Forms.Button();
+            this.contextMenuStripForGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuestions)).BeginInit();
+            this.groupBoxAddNewQuestion.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // contextMenuStripForGrid
+            // 
+            this.contextMenuStripForGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemRemoveQuestion,
+            this.MenuItemEditQuestion});
+            this.contextMenuStripForGrid.Name = "contextMenuStripForGrid";
+            this.contextMenuStripForGrid.Size = new System.Drawing.Size(155, 48);
+            // 
+            // MenuItemRemoveQuestion
+            // 
+            this.MenuItemRemoveQuestion.Name = "MenuItemRemoveQuestion";
+            this.MenuItemRemoveQuestion.Size = new System.Drawing.Size(154, 22);
+            this.MenuItemRemoveQuestion.Text = "&Удалить";
+            // 
+            // MenuItemEditQuestion
+            // 
+            this.MenuItemEditQuestion.Name = "MenuItemEditQuestion";
+            this.MenuItemEditQuestion.Size = new System.Drawing.Size(154, 22);
+            this.MenuItemEditQuestion.Text = "&Редактировать";
+            // 
+            // dataGridViewQuestions
+            // 
+            this.dataGridViewQuestions.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.dataGridViewQuestions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewQuestions.ContextMenuStrip = this.contextMenuStripForGrid;
+            this.dataGridViewQuestions.Location = new System.Drawing.Point(12, 12);
+            this.dataGridViewQuestions.Name = "dataGridViewQuestions";
+            this.dataGridViewQuestions.Size = new System.Drawing.Size(568, 290);
+            this.dataGridViewQuestions.TabIndex = 1;
+            // 
+            // groupBoxAddNewQuestion
+            // 
+            this.groupBoxAddNewQuestion.Controls.Add(this.buttonAddNewQuestion);
+            this.groupBoxAddNewQuestion.Controls.Add(this.textBoxAnswerQuestion);
+            this.groupBoxAddNewQuestion.Controls.Add(this.textBox1);
+            this.groupBoxAddNewQuestion.Controls.Add(this.labelAnswerQuestion);
+            this.groupBoxAddNewQuestion.Controls.Add(this.labelTextQuestion);
+            this.groupBoxAddNewQuestion.Location = new System.Drawing.Point(12, 323);
+            this.groupBoxAddNewQuestion.Name = "groupBoxAddNewQuestion";
+            this.groupBoxAddNewQuestion.Size = new System.Drawing.Size(568, 85);
+            this.groupBoxAddNewQuestion.TabIndex = 2;
+            this.groupBoxAddNewQuestion.TabStop = false;
+            this.groupBoxAddNewQuestion.Text = "Добавить новый вопрос в список вопросов";
+            // 
+            // labelTextQuestion
+            // 
+            this.labelTextQuestion.AutoSize = true;
+            this.labelTextQuestion.Location = new System.Drawing.Point(7, 24);
+            this.labelTextQuestion.Name = "labelTextQuestion";
+            this.labelTextQuestion.Size = new System.Drawing.Size(85, 13);
+            this.labelTextQuestion.TabIndex = 0;
+            this.labelTextQuestion.Text = "Текст вопроса:";
+            // 
+            // labelAnswerQuestion
+            // 
+            this.labelAnswerQuestion.AutoSize = true;
+            this.labelAnswerQuestion.Location = new System.Drawing.Point(6, 52);
+            this.labelAnswerQuestion.Name = "labelAnswerQuestion";
+            this.labelAnswerQuestion.Size = new System.Drawing.Size(94, 13);
+            this.labelAnswerQuestion.TabIndex = 1;
+            this.labelAnswerQuestion.Text = "Ответ на вопрос:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(119, 21);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(443, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // textBoxAnswerQuestion
+            // 
+            this.textBoxAnswerQuestion.Location = new System.Drawing.Point(119, 49);
+            this.textBoxAnswerQuestion.Name = "textBoxAnswerQuestion";
+            this.textBoxAnswerQuestion.Size = new System.Drawing.Size(201, 20);
+            this.textBoxAnswerQuestion.TabIndex = 3;
+            // 
+            // buttonAddNewQuestion
+            // 
+            this.buttonAddNewQuestion.Location = new System.Drawing.Point(349, 47);
+            this.buttonAddNewQuestion.Name = "buttonAddNewQuestion";
+            this.buttonAddNewQuestion.Size = new System.Drawing.Size(213, 23);
+            this.buttonAddNewQuestion.TabIndex = 4;
+            this.buttonAddNewQuestion.Text = "Добавить новый вопрос";
+            this.buttonAddNewQuestion.UseVisualStyleBackColor = true;
+            // 
+            // FrmViewQuestions
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(593, 420);
+            this.Controls.Add(this.groupBoxAddNewQuestion);
+            this.Controls.Add(this.dataGridViewQuestions);
+            this.Name = "FrmViewQuestions";
+            this.ShowIcon = false;
+            this.Text = "Работа с вопросами";
+            this.contextMenuStripForGrid.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuestions)).EndInit();
+            this.groupBoxAddNewQuestion.ResumeLayout(false);
+            this.groupBoxAddNewQuestion.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripForGrid;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemRemoveQuestion;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemEditQuestion;
+        private System.Windows.Forms.DataGridView dataGridViewQuestions;
+        private System.Windows.Forms.GroupBox groupBoxAddNewQuestion;
+        private System.Windows.Forms.Button buttonAddNewQuestion;
+        private System.Windows.Forms.TextBox textBoxAnswerQuestion;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label labelAnswerQuestion;
+        private System.Windows.Forms.Label labelTextQuestion;
+    }
+}

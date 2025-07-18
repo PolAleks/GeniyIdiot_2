@@ -72,7 +72,8 @@ namespace GeniyIdiotWinFormsApp
 
         private void showQuestionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var questionsForm = new QuestionsForm();
+            //var questionsForm = new QuestionsForm();
+            var questionsForm = new FrmViewQuestions();
             questionsForm.ShowDialog();
         }
     }

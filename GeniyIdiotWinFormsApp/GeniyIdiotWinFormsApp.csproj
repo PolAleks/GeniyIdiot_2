@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmViewQuestions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmViewQuestions.Designer.cs">
+      <DependentUpon>FrmViewQuestions.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="WelcomForm.Designer.cs">
       <DependentUpon>WelcomForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmViewQuestions.resx">
+      <DependentUpon>FrmViewQuestions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
