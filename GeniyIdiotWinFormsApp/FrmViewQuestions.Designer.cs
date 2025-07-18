@@ -36,7 +36,7 @@
             this.groupBoxAddNewQuestion = new System.Windows.Forms.GroupBox();
             this.labelTextQuestion = new System.Windows.Forms.Label();
             this.labelAnswerQuestion = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxTextQuestion = new System.Windows.Forms.TextBox();
             this.textBoxAnswerQuestion = new System.Windows.Forms.TextBox();
             this.buttonAddNewQuestion = new System.Windows.Forms.Button();
             this.contextMenuStripForGrid.SuspendLayout();
@@ -71,19 +71,19 @@
             this.dataGridViewQuestions.ContextMenuStrip = this.contextMenuStripForGrid;
             this.dataGridViewQuestions.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewQuestions.Name = "dataGridViewQuestions";
-            this.dataGridViewQuestions.Size = new System.Drawing.Size(568, 290);
+            this.dataGridViewQuestions.Size = new System.Drawing.Size(643, 290);
             this.dataGridViewQuestions.TabIndex = 1;
             // 
             // groupBoxAddNewQuestion
             // 
             this.groupBoxAddNewQuestion.Controls.Add(this.buttonAddNewQuestion);
             this.groupBoxAddNewQuestion.Controls.Add(this.textBoxAnswerQuestion);
-            this.groupBoxAddNewQuestion.Controls.Add(this.textBox1);
+            this.groupBoxAddNewQuestion.Controls.Add(this.textBoxTextQuestion);
             this.groupBoxAddNewQuestion.Controls.Add(this.labelAnswerQuestion);
             this.groupBoxAddNewQuestion.Controls.Add(this.labelTextQuestion);
             this.groupBoxAddNewQuestion.Location = new System.Drawing.Point(12, 323);
             this.groupBoxAddNewQuestion.Name = "groupBoxAddNewQuestion";
-            this.groupBoxAddNewQuestion.Size = new System.Drawing.Size(568, 85);
+            this.groupBoxAddNewQuestion.Size = new System.Drawing.Size(643, 85);
             this.groupBoxAddNewQuestion.TabIndex = 2;
             this.groupBoxAddNewQuestion.TabStop = false;
             this.groupBoxAddNewQuestion.Text = "Добавить новый вопрос в список вопросов";
@@ -106,25 +106,25 @@
             this.labelAnswerQuestion.TabIndex = 1;
             this.labelAnswerQuestion.Text = "Ответ на вопрос:";
             // 
-            // textBox1
+            // textBoxTextQuestion
             // 
-            this.textBox1.Location = new System.Drawing.Point(119, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(443, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBoxTextQuestion.Location = new System.Drawing.Point(119, 21);
+            this.textBoxTextQuestion.Name = "textBoxTextQuestion";
+            this.textBoxTextQuestion.Size = new System.Drawing.Size(518, 20);
+            this.textBoxTextQuestion.TabIndex = 2;
             // 
             // textBoxAnswerQuestion
             // 
             this.textBoxAnswerQuestion.Location = new System.Drawing.Point(119, 49);
             this.textBoxAnswerQuestion.Name = "textBoxAnswerQuestion";
-            this.textBoxAnswerQuestion.Size = new System.Drawing.Size(201, 20);
+            this.textBoxAnswerQuestion.Size = new System.Drawing.Size(234, 20);
             this.textBoxAnswerQuestion.TabIndex = 3;
             // 
             // buttonAddNewQuestion
             // 
-            this.buttonAddNewQuestion.Location = new System.Drawing.Point(349, 47);
+            this.buttonAddNewQuestion.Location = new System.Drawing.Point(373, 47);
             this.buttonAddNewQuestion.Name = "buttonAddNewQuestion";
-            this.buttonAddNewQuestion.Size = new System.Drawing.Size(213, 23);
+            this.buttonAddNewQuestion.Size = new System.Drawing.Size(264, 23);
             this.buttonAddNewQuestion.TabIndex = 4;
             this.buttonAddNewQuestion.Text = "Добавить новый вопрос";
             this.buttonAddNewQuestion.UseVisualStyleBackColor = true;
@@ -133,12 +133,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 420);
+            this.ClientSize = new System.Drawing.Size(667, 420);
             this.Controls.Add(this.groupBoxAddNewQuestion);
             this.Controls.Add(this.dataGridViewQuestions);
             this.Name = "FrmViewQuestions";
             this.ShowIcon = false;
             this.Text = "Работа с вопросами";
+            this.Load += new System.EventHandler(this.FrmViewQuestions_Load);
             this.contextMenuStripForGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuestions)).EndInit();
             this.groupBoxAddNewQuestion.ResumeLayout(false);
@@ -156,7 +157,7 @@
         private System.Windows.Forms.GroupBox groupBoxAddNewQuestion;
         private System.Windows.Forms.Button buttonAddNewQuestion;
         private System.Windows.Forms.TextBox textBoxAnswerQuestion;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxTextQuestion;
         private System.Windows.Forms.Label labelAnswerQuestion;
         private System.Windows.Forms.Label labelTextQuestion;
     }
