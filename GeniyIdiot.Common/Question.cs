@@ -8,11 +8,14 @@ namespace GeniyIdiot.Common
         public int Answer { get ; set; }
         public int Number { get; set; } = 0;
 
+        public Guid Id { get; }
+
         public Question() { }
         public Question(string text, int answer)
         {
             Text = text;
             Answer = answer;
+            Id = Guid.NewGuid();
         }
         public bool IsAnswerCorrect(int answer) => Answer == answer;
 
