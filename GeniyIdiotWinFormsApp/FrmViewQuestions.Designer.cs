@@ -73,6 +73,7 @@
             this.dataGridViewQuestions.Name = "dataGridViewQuestions";
             this.dataGridViewQuestions.Size = new System.Drawing.Size(643, 290);
             this.dataGridViewQuestions.TabIndex = 1;
+            this.dataGridViewQuestions.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewQuestions_CellEndEdit);
             // 
             // groupBoxAddNewQuestion
             // 
@@ -128,6 +129,7 @@
             this.buttonAddNewQuestion.TabIndex = 4;
             this.buttonAddNewQuestion.Text = "Добавить новый вопрос";
             this.buttonAddNewQuestion.UseVisualStyleBackColor = true;
+            this.buttonAddNewQuestion.Click += new System.EventHandler(this.buttonAddNewQuestion_Click);
             // 
             // FrmViewQuestions
             // 

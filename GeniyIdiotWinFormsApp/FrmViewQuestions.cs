@@ -47,5 +47,49 @@ namespace GeniyIdiotWinFormsApp
         {
             buttonAddNewQuestion.Enabled = textBoxTextQuestion.Text.Length > 0 && textBoxAnswerQuestion.Text.Length > 0; ;
         }
+
+        private void buttonAddNewQuestion_Click(object sender, EventArgs e)
+        {
+            bool isValidAnswer = InputValidator.TryParseNumber(textBoxAnswerQuestion.Text, out int answer, out string errorMessage);
+            if (isValidAnswer)
+            {
+                Question question = new Question(textBoxTextQuestion.Text, answer);
+                QuestionsStorage.Add(question);
+                RefreshDataGridView();
+
+                textBoxTextQuestion.Text = string.Empty;
+                textBoxAnswerQuestion.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show(errorMessage, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxAnswerQuestion.Text = string.Empty;
+                textBoxAnswerQuestion.Focus();
+            }
+
+        }
+
+        private void dataGridViewQuestions_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            int column = e.ColumnIndex;
+
+            DataGridViewCell cell = dataGridViewQuestions[column, row];
+            object value = cell.Value;
+
+            Question question = _questions[row];
+
+            switch (column)
+            {
+                case 0:
+                    question.Text = (string)value;
+                    break;
+                case 1:
+                    question.Answer = (int)value;
+                    break;
+            }
+            QuestionsStorage.Update(question);
+            RefreshDataGridView();
+        }
     }
 }
