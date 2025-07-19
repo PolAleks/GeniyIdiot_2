@@ -50,18 +50,19 @@
             this.MenuItemRemoveQuestion,
             this.MenuItemEditQuestion});
             this.contextMenuStripForGrid.Name = "contextMenuStripForGrid";
-            this.contextMenuStripForGrid.Size = new System.Drawing.Size(155, 48);
+            this.contextMenuStripForGrid.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStripForGrid.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripForGrid_Opening);
             // 
             // MenuItemRemoveQuestion
             // 
             this.MenuItemRemoveQuestion.Name = "MenuItemRemoveQuestion";
-            this.MenuItemRemoveQuestion.Size = new System.Drawing.Size(154, 22);
+            this.MenuItemRemoveQuestion.Size = new System.Drawing.Size(180, 22);
             this.MenuItemRemoveQuestion.Text = "&Удалить";
             // 
             // MenuItemEditQuestion
             // 
             this.MenuItemEditQuestion.Name = "MenuItemEditQuestion";
-            this.MenuItemEditQuestion.Size = new System.Drawing.Size(154, 22);
+            this.MenuItemEditQuestion.Size = new System.Drawing.Size(180, 22);
             this.MenuItemEditQuestion.Text = "&Редактировать";
             // 
             // dataGridViewQuestions
@@ -75,6 +76,7 @@
             this.dataGridViewQuestions.TabIndex = 1;
             this.dataGridViewQuestions.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewQuestions_CellEndEdit);
             this.dataGridViewQuestions.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewQuestions_DataError);
+            this.dataGridViewQuestions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridViewQuestions_MouseDown);
             // 
             // groupBoxAddNewQuestion
             // 

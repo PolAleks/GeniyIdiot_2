@@ -111,5 +111,29 @@ namespace GeniyIdiotWinFormsApp
                 e.Cancel = true;
             }
         }
+
+        private void dataGridViewQuestions_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var hitInfo = dataGridViewQuestions.HitTest(e.X, e.Y);
+                if (hitInfo.RowIndex >= 0 && hitInfo.ColumnIndex >= 0)
+                {
+                    dataGridViewQuestions.ClearSelection();
+                    dataGridViewQuestions.Rows[hitInfo.RowIndex].Selected = true;
+                    cancelcontexMenu = false;
+                }
+                else
+                {
+                    cancelcontexMenu = true;
+                }
+            }
+        }
+
+        private void contextMenuStripForGrid_Opening(object sender, CancelEventArgs e)
+        {
+            if (cancelcontexMenu)
+                e.Cancel = true;
+        }
     }
 }
