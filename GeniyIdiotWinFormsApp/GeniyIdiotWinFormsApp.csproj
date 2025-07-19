@@ -61,6 +61,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmEditQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditQuestion.Designer.cs">
+      <DependentUpon>FrmEditQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmViewQuestions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmViewQuestions.Designer.cs">
+      <DependentUpon>FrmViewQuestions.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +81,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuestionsForm.Designer.cs">
+      <DependentUpon>QuestionsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ResultsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +99,12 @@
     <Compile Include="WelcomForm.Designer.cs">
       <DependentUpon>WelcomForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmEditQuestion.resx">
+      <DependentUpon>FrmEditQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmViewQuestions.resx">
+      <DependentUpon>FrmViewQuestions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,12 +117,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="QuestionsForm.resx">
+      <DependentUpon>QuestionsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResultsForm.resx">
       <DependentUpon>ResultsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomForm.resx">
       <DependentUpon>WelcomForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\GeniyIdiot.Common.Question.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
