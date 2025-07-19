@@ -58,6 +58,7 @@
             this.MenuItemRemoveQuestion.Name = "MenuItemRemoveQuestion";
             this.MenuItemRemoveQuestion.Size = new System.Drawing.Size(180, 22);
             this.MenuItemRemoveQuestion.Text = "&Удалить";
+            this.MenuItemRemoveQuestion.Click += new System.EventHandler(this.MenuItemRemoveQuestion_Click);
             // 
             // MenuItemEditQuestion
             // 

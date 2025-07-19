@@ -101,7 +101,7 @@ namespace GeniyIdiotWinFormsApp
             int column = e.ColumnIndex;
 
             object editedValue = dataGridViewQuestions[column, row].EditedFormattedValue;
-            
+
             if (e.Exception is FormatException fx && column == 1)
             {
                 MessageBox.Show($"Введите числовое значение, т.к. '{editedValue.ToString()}' не является числовым значением!",
@@ -134,6 +134,26 @@ namespace GeniyIdiotWinFormsApp
         {
             if (cancelcontexMenu)
                 e.Cancel = true;
+        }
+
+        private void MenuItemRemoveQuestion_Click(object sender, EventArgs e)
+        {
+            var selectedRows = dataGridViewQuestions.SelectedRows;
+            foreach (DataGridViewRow selectedRow in selectedRows)
+            {
+                int rowIndex = selectedRow.Index;
+                if (rowIndex < 0) continue;
+
+                Question question = _questions[rowIndex];
+
+                DialogResult dlgConfirm = MessageBox.Show("Удалить вопрос?",
+                                                          "Подтвердите",
+                                                          MessageBoxButtons.YesNoCancel,
+                                                          MessageBoxIcon.Question);
+                if (dlgConfirm == DialogResult.Yes)
+                    QuestionsStorage.Delete(question);
+            }
+            RefreshDataGridView();
         }
     }
 }
