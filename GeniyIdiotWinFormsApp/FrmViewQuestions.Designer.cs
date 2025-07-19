@@ -34,11 +34,11 @@
             this.MenuItemEditQuestion = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewQuestions = new System.Windows.Forms.DataGridView();
             this.groupBoxAddNewQuestion = new System.Windows.Forms.GroupBox();
-            this.labelTextQuestion = new System.Windows.Forms.Label();
-            this.labelAnswerQuestion = new System.Windows.Forms.Label();
-            this.textBoxTextQuestion = new System.Windows.Forms.TextBox();
-            this.textBoxAnswerQuestion = new System.Windows.Forms.TextBox();
             this.buttonAddNewQuestion = new System.Windows.Forms.Button();
+            this.textBoxAnswerQuestion = new System.Windows.Forms.TextBox();
+            this.textBoxTextQuestion = new System.Windows.Forms.TextBox();
+            this.labelAnswerQuestion = new System.Windows.Forms.Label();
+            this.labelTextQuestion = new System.Windows.Forms.Label();
             this.contextMenuStripForGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuestions)).BeginInit();
             this.groupBoxAddNewQuestion.SuspendLayout();
@@ -74,6 +74,7 @@
             this.dataGridViewQuestions.Size = new System.Drawing.Size(643, 290);
             this.dataGridViewQuestions.TabIndex = 1;
             this.dataGridViewQuestions.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewQuestions_CellEndEdit);
+            this.dataGridViewQuestions.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewQuestions_DataError);
             // 
             // groupBoxAddNewQuestion
             // 
@@ -89,14 +90,29 @@
             this.groupBoxAddNewQuestion.TabStop = false;
             this.groupBoxAddNewQuestion.Text = "Добавить новый вопрос в список вопросов";
             // 
-            // labelTextQuestion
+            // buttonAddNewQuestion
             // 
-            this.labelTextQuestion.AutoSize = true;
-            this.labelTextQuestion.Location = new System.Drawing.Point(7, 24);
-            this.labelTextQuestion.Name = "labelTextQuestion";
-            this.labelTextQuestion.Size = new System.Drawing.Size(85, 13);
-            this.labelTextQuestion.TabIndex = 0;
-            this.labelTextQuestion.Text = "Текст вопроса:";
+            this.buttonAddNewQuestion.Location = new System.Drawing.Point(373, 47);
+            this.buttonAddNewQuestion.Name = "buttonAddNewQuestion";
+            this.buttonAddNewQuestion.Size = new System.Drawing.Size(264, 23);
+            this.buttonAddNewQuestion.TabIndex = 4;
+            this.buttonAddNewQuestion.Text = "Добавить новый вопрос";
+            this.buttonAddNewQuestion.UseVisualStyleBackColor = true;
+            this.buttonAddNewQuestion.Click += new System.EventHandler(this.buttonAddNewQuestion_Click);
+            // 
+            // textBoxAnswerQuestion
+            // 
+            this.textBoxAnswerQuestion.Location = new System.Drawing.Point(119, 49);
+            this.textBoxAnswerQuestion.Name = "textBoxAnswerQuestion";
+            this.textBoxAnswerQuestion.Size = new System.Drawing.Size(234, 20);
+            this.textBoxAnswerQuestion.TabIndex = 3;
+            // 
+            // textBoxTextQuestion
+            // 
+            this.textBoxTextQuestion.Location = new System.Drawing.Point(119, 21);
+            this.textBoxTextQuestion.Name = "textBoxTextQuestion";
+            this.textBoxTextQuestion.Size = new System.Drawing.Size(518, 20);
+            this.textBoxTextQuestion.TabIndex = 2;
             // 
             // labelAnswerQuestion
             // 
@@ -107,29 +123,14 @@
             this.labelAnswerQuestion.TabIndex = 1;
             this.labelAnswerQuestion.Text = "Ответ на вопрос:";
             // 
-            // textBoxTextQuestion
+            // labelTextQuestion
             // 
-            this.textBoxTextQuestion.Location = new System.Drawing.Point(119, 21);
-            this.textBoxTextQuestion.Name = "textBoxTextQuestion";
-            this.textBoxTextQuestion.Size = new System.Drawing.Size(518, 20);
-            this.textBoxTextQuestion.TabIndex = 2;
-            // 
-            // textBoxAnswerQuestion
-            // 
-            this.textBoxAnswerQuestion.Location = new System.Drawing.Point(119, 49);
-            this.textBoxAnswerQuestion.Name = "textBoxAnswerQuestion";
-            this.textBoxAnswerQuestion.Size = new System.Drawing.Size(234, 20);
-            this.textBoxAnswerQuestion.TabIndex = 3;
-            // 
-            // buttonAddNewQuestion
-            // 
-            this.buttonAddNewQuestion.Location = new System.Drawing.Point(373, 47);
-            this.buttonAddNewQuestion.Name = "buttonAddNewQuestion";
-            this.buttonAddNewQuestion.Size = new System.Drawing.Size(264, 23);
-            this.buttonAddNewQuestion.TabIndex = 4;
-            this.buttonAddNewQuestion.Text = "Добавить новый вопрос";
-            this.buttonAddNewQuestion.UseVisualStyleBackColor = true;
-            this.buttonAddNewQuestion.Click += new System.EventHandler(this.buttonAddNewQuestion_Click);
+            this.labelTextQuestion.AutoSize = true;
+            this.labelTextQuestion.Location = new System.Drawing.Point(7, 24);
+            this.labelTextQuestion.Name = "labelTextQuestion";
+            this.labelTextQuestion.Size = new System.Drawing.Size(85, 13);
+            this.labelTextQuestion.TabIndex = 0;
+            this.labelTextQuestion.Text = "Текст вопроса:";
             // 
             // FrmViewQuestions
             // 

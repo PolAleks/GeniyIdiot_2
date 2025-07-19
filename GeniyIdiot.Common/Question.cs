@@ -7,15 +7,14 @@ namespace GeniyIdiot.Common
         public string Text { get ; set; }
         public int Answer { get ; set; }
         public int Number { get; set; } = 0;
-
-        public Guid Id { get; }
+        public Guid Id { get; set; }
 
         public Question() { }
-        public Question(string text, int answer)
+        public Question(string text, int answer, Guid id)
         {
             Text = text;
             Answer = answer;
-            Id = Guid.NewGuid();
+            Id = id;
         }
         public bool IsAnswerCorrect(int answer) => Answer == answer;
 

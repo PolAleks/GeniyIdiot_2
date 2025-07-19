@@ -23,14 +23,14 @@ namespace GeniyIdiotWinFormsApp
 
         private void FrmViewQuestions_Load(object sender, EventArgs e)
         {
-            _questions = QuestionsStorage.GetAll();
             RefreshDataGridView();
         }
 
         private void RefreshDataGridView()
         {
+            _questions = QuestionsStorage.GetAll();
             dataGridViewQuestions.DataSource = null;
-            dataGridViewQuestions.DataSource = QuestionsStorage.GetAll();
+            dataGridViewQuestions.DataSource = _questions;
 
             dataGridViewQuestions.Columns["Text"].HeaderText = "Текст вопроса";
             dataGridViewQuestions.Columns["Text"].Width = 500;
@@ -41,6 +41,10 @@ namespace GeniyIdiotWinFormsApp
             dataGridViewQuestions.Columns["Number"].HeaderText = "№ вопроса";
             dataGridViewQuestions.Columns["Number"].Width = 100;
             dataGridViewQuestions.Columns["Number"].Visible = false;
+
+            dataGridViewQuestions.Columns["Id"].HeaderText = "Id";
+            dataGridViewQuestions.Columns["Id"].Width = 100;
+            dataGridViewQuestions.Columns["Id"].Visible = false;
         }
 
         private void UpdateButtonAddNewQuestion()
@@ -53,7 +57,7 @@ namespace GeniyIdiotWinFormsApp
             bool isValidAnswer = InputValidator.TryParseNumber(textBoxAnswerQuestion.Text, out int answer, out string errorMessage);
             if (isValidAnswer)
             {
-                Question question = new Question(textBoxTextQuestion.Text, answer);
+                Question question = new Question(textBoxTextQuestion.Text, answer, Guid.NewGuid());
                 QuestionsStorage.Add(question);
                 RefreshDataGridView();
 
@@ -89,7 +93,23 @@ namespace GeniyIdiotWinFormsApp
                     break;
             }
             QuestionsStorage.Update(question);
-            RefreshDataGridView();
+        }
+
+        private void dataGridViewQuestions_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            int row = e.RowIndex;
+            int column = e.ColumnIndex;
+
+            object editedValue = dataGridViewQuestions[column, row].EditedFormattedValue;
+            
+            if (e.Exception is FormatException fx && column == 1)
+            {
+                MessageBox.Show($"Введите числовое значение, т.к. '{editedValue.ToString()}' не является числовым значением!",
+                                "Ошибка",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                e.Cancel = true;
+            }
         }
     }
 }
