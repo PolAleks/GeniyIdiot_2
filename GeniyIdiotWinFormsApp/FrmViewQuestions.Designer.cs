@@ -50,7 +50,7 @@
             this.MenuItemRemoveQuestion,
             this.MenuItemEditQuestion});
             this.contextMenuStripForGrid.Name = "contextMenuStripForGrid";
-            this.contextMenuStripForGrid.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStripForGrid.Size = new System.Drawing.Size(155, 48);
             this.contextMenuStripForGrid.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripForGrid_Opening);
             // 
             // MenuItemRemoveQuestion
@@ -110,6 +110,7 @@
             this.textBoxAnswerQuestion.Name = "textBoxAnswerQuestion";
             this.textBoxAnswerQuestion.Size = new System.Drawing.Size(234, 20);
             this.textBoxAnswerQuestion.TabIndex = 3;
+            this.textBoxAnswerQuestion.TextChanged += new System.EventHandler(this.textBoxAnswerQuestion_TextChanged);
             // 
             // textBoxTextQuestion
             // 
@@ -117,6 +118,7 @@
             this.textBoxTextQuestion.Name = "textBoxTextQuestion";
             this.textBoxTextQuestion.Size = new System.Drawing.Size(518, 20);
             this.textBoxTextQuestion.TabIndex = 2;
+            this.textBoxTextQuestion.TextChanged += new System.EventHandler(this.textBoxTextQuestion_TextChanged);
             // 
             // labelAnswerQuestion
             // 

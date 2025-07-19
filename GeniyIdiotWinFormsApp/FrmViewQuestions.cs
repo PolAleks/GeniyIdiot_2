@@ -24,6 +24,7 @@ namespace GeniyIdiotWinFormsApp
         private void FrmViewQuestions_Load(object sender, EventArgs e)
         {
             RefreshDataGridView();
+            UpdateButtonAddNewQuestion();
         }
 
         private void RefreshDataGridView()
@@ -177,6 +178,16 @@ namespace GeniyIdiotWinFormsApp
         {
             QuestionsStorage.Update(question);
             RefreshDataGridView();
+        }
+
+        private void textBoxTextQuestion_TextChanged(object sender, EventArgs e)
+        {
+            UpdateButtonAddNewQuestion();
+        }
+
+        private void textBoxAnswerQuestion_TextChanged(object sender, EventArgs e)
+        {
+            UpdateButtonAddNewQuestion();
         }
     }
 }
