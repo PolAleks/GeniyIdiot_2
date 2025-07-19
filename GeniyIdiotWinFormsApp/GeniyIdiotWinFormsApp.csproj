@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmEditQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditQuestion.Designer.cs">
+      <DependentUpon>FrmEditQuestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmViewQuestions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     <Compile Include="WelcomForm.Designer.cs">
       <DependentUpon>WelcomForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmEditQuestion.resx">
+      <DependentUpon>FrmEditQuestion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmViewQuestions.resx">
       <DependentUpon>FrmViewQuestions.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,6 +126,7 @@
     <EmbeddedResource Include="WelcomForm.resx">
       <DependentUpon>WelcomForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\GeniyIdiot.Common.Question.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -65,6 +65,7 @@
             this.MenuItemEditQuestion.Name = "MenuItemEditQuestion";
             this.MenuItemEditQuestion.Size = new System.Drawing.Size(180, 22);
             this.MenuItemEditQuestion.Text = "&Редактировать";
+            this.MenuItemEditQuestion.Click += new System.EventHandler(this.MenuItemEditQuestion_Click);
             // 
             // dataGridViewQuestions
             // 

@@ -155,5 +155,28 @@ namespace GeniyIdiotWinFormsApp
             }
             RefreshDataGridView();
         }
+
+        private void MenuItemEditQuestion_Click(object sender, EventArgs e)
+        {
+            var selectedRows = dataGridViewQuestions.SelectedRows;
+
+            foreach (DataGridViewRow selectedRow in selectedRows)
+            {
+                int rowIndex = selectedRow.Index;
+                if(rowIndex < 0) continue;
+
+                Question question = _questions[rowIndex];
+                var editFrm = new FrmEditQuestion();
+                editFrm.EditedQuestion = question;
+                editFrm.QuestionUpdateEvent += FrmEdit_QuestionUpdatedEvent;
+                editFrm.Show();
+            }
+        }
+
+        private void FrmEdit_QuestionUpdatedEvent(Question question)
+        {
+            QuestionsStorage.Update(question);
+            RefreshDataGridView();
+        }
     }
 }
