@@ -75,6 +75,7 @@
             this.ClientSize = new System.Drawing.Size(401, 317);
             this.Controls.Add(this.resultsDataGridView);
             this.Name = "ResultsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Результаты предыдущих тестирований";
             this.Load += new System.EventHandler(this.ResultsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.resultsDataGridView)).EndInit();
