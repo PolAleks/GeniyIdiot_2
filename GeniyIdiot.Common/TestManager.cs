@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Timers;
 
 namespace GeniyIdiot.Common
 {
@@ -18,7 +19,7 @@ namespace GeniyIdiot.Common
         public TestManager(User user)
         {
             _user = user;
-            _questions = QuestionsStorage.GetAll();            
+            _questions = QuestionsStorage.GetAll();
         }
 
         public void Start()
