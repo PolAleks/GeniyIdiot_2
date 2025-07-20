@@ -67,6 +67,12 @@
     <Compile Include="FrmEditQuestion.Designer.cs">
       <DependentUpon>FrmEditQuestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmQuiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmQuiz.Designer.cs">
+      <DependentUpon>FrmQuiz.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmViewQuestions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </Compile>
     <EmbeddedResource Include="FrmEditQuestion.resx">
       <DependentUpon>FrmEditQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmQuiz.resx">
+      <DependentUpon>FrmQuiz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmViewQuestions.resx">
       <DependentUpon>FrmViewQuestions.cs</DependentUpon>
