@@ -21,7 +21,7 @@ namespace GeniyIdiot.Common
         public event Action<Question> OnNextQuestion;
         public event Action<User> OnQuizComplite;
         public event Action<int> OnTimeUpdate;
-        public event Action<bool, string> OnAnswerChecked;
+        //public event Action<bool, string> OnAnswerChecked;
 
         public QuizManager(User user)
         {
