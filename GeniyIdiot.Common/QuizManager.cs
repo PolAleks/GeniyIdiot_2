@@ -21,7 +21,6 @@ namespace GeniyIdiot.Common
         public event Action<Question> OnNextQuestion;
         public event Action<User> OnQuizComplite;
         public event Action<int> OnTimeUpdate;
-        //public event Action<bool, string> OnAnswerChecked;
 
         public QuizManager(User user)
         {
@@ -44,19 +43,24 @@ namespace GeniyIdiot.Common
             if (_questions.Count > 0) 
                 OnNextQuestion?.Invoke(GetQuestion());
             else
-            {
-                _user.AddDiagnosis(_indexCurrentQuestion);
-                OnQuizComplite?.Invoke(_user);
+                End();
+        }
 
-                UsersResultsStorage.Add(_user);
-            }
+        private void End()
+        {
+            _user.AddDiagnosis(_indexCurrentQuestion);
+            OnQuizComplite?.Invoke(_user);
+
+            UsersResultsStorage.Add(_user);
         }
 
         private Question GetQuestion()
         {
+            _timeLeft = 10;
             _timer = new Timer(1000);
             _timer.AutoReset = true;
             _timer.Elapsed += (s, e) => UpdateTimer();
+            _timer.Start();
 
             if(_questions.Count != 0)
             {
@@ -68,17 +72,23 @@ namespace GeniyIdiot.Common
                 _currentQuestion.Number = ++_indexCurrentQuestion;
                 return _currentQuestion;
             }
+            
             return null;
         }
 
         private void UpdateTimer()
         {
-            _timeLeft--;
-            OnTimeUpdate?.Invoke(_timeLeft);
-
+            OnTimeUpdate?.Invoke(_timeLeft--);
+            
             if (_timeLeft <= 0)
             {
                 _timer.Stop();
+                _timeLeft = 10;
+
+                if (_questions.Count > 0)
+                    OnNextQuestion?.Invoke(GetQuestion());
+                else
+                    End();
             }
         }
     }

@@ -32,6 +32,7 @@
             this.labelQuestionText = new System.Windows.Forms.Label();
             this.textBoxAnswer = new System.Windows.Forms.TextBox();
             this.buttonNexQuestion = new System.Windows.Forms.Button();
+            this.labelTimer = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelQuestionNumber
@@ -71,11 +72,22 @@
             this.buttonNexQuestion.Text = "&Далее";
             this.buttonNexQuestion.UseVisualStyleBackColor = true;
             // 
+            // labelTimer
+            // 
+            this.labelTimer.AutoSize = true;
+            this.labelTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTimer.Location = new System.Drawing.Point(474, 9);
+            this.labelTimer.Name = "labelTimer";
+            this.labelTimer.Size = new System.Drawing.Size(138, 16);
+            this.labelTimer.TabIndex = 4;
+            this.labelTimer.Text = "Осталось 10 секунд.";
+            // 
             // FrmQuiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 139);
+            this.Controls.Add(this.labelTimer);
             this.Controls.Add(this.buttonNexQuestion);
             this.Controls.Add(this.textBoxAnswer);
             this.Controls.Add(this.labelQuestionText);
@@ -85,6 +97,7 @@
             this.Name = "FrmQuiz";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Гений - Идиот";
+            this.Load += new System.EventHandler(this.FrmQuiz_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,5 +109,6 @@
         private System.Windows.Forms.Label labelQuestionText;
         private System.Windows.Forms.TextBox textBoxAnswer;
         private System.Windows.Forms.Button buttonNexQuestion;
+        private System.Windows.Forms.Label labelTimer;
     }
 }
