@@ -81,7 +81,7 @@ namespace GeniyIdiotConsoleApp
 
             } while (!Repeat("Все верно?"));
 
-            QuestionsStorage.Add(new Question(textQuestion, answerQuestion));
+            QuestionsStorage.Add(new Question(textQuestion, answerQuestion, Guid.NewGuid()));
         }
 
         static void ShowResults()
@@ -110,33 +110,31 @@ namespace GeniyIdiotConsoleApp
         {
             Console.Write("Напиши своё имя: ");
             var userName = Console.ReadLine();
-
             User user = new User(userName);
 
-            var test = new TestManager(user);
-            test.OnNextQuestion += q =>
-            {
-                Console.WriteLine($"Вопрос №{q.Number}");
-                Console.Write($"{q.Text}: ");
-            };
+            QuizManager quiz = new QuizManager(user);
 
-            test.OnCompliteTest += u =>
-            {
-                Console.WriteLine("Количество правильных ответов - {0}", u.CountCorrectAnswer);
-                Console.WriteLine($"{u.Name} твой диагноз - {u.Diagnosis}");
-            };
+            quiz.OnNextQuestion += q => Console.WriteLine(
+                $"Вопрос №{q.Number}\n" +
+                $"{q.Text}");
 
-            test.Start();
+            quiz.OnQuizComplite += u => Console.WriteLine(
+                $"Количество правильных ответов - {u.CountCorrectAnswer}\n" +
+                $"{u.Name} твой диагноз - {u.Diagnosis}");
+
+            quiz.OnTimeUpdate += leftTime => Console.WriteLine($"Осталось {leftTime} сек.");
+
+            quiz.Start();
 
             do
             {
-                bool isNextQuestion = true;
-                while (isNextQuestion)
+                bool anyQuestions = true;
+                while (anyQuestions)
                 {
-                    isNextQuestion = test.SubmitAnswer(GetNumber());
+                    anyQuestions = quiz.Submit(GetNumber());
                 }
-
-            } while (Repeat());
+            }
+            while (Repeat());
         }
 
         static int GetNumber(int minValue = int.MinValue, int maxValue = int.MaxValue)
@@ -167,15 +165,5 @@ namespace GeniyIdiotConsoleApp
             return userConfirmation.Equals("да");
         }
 
-        static void ShuffleQuestions(List<Question> questions)
-        {
-            Random rand = new Random();
-            for (int i = questions.Count - 1; i > 0; i--)
-            {
-                int newIndex = rand.Next(i);
-                (questions[i].Text, questions[newIndex].Text) = (questions[newIndex].Text, questions[i].Text);
-                (questions[i].Answer, questions[newIndex].Answer) = (questions[newIndex].Answer, questions[i].Answer);
-            }
-        }
     }
 }

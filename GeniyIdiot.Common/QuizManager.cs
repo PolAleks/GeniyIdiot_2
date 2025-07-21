@@ -33,17 +33,23 @@ namespace GeniyIdiot.Common
             OnNextQuestion?.Invoke(GetQuestion());
         }
 
-        public void Submit(int answer)
+        public bool Submit(int answer)
         {
             _timer.Stop();
 
             if (_currentQuestion.IsAnswerCorrect(answer))
                 _user.AddCorrectAnswer();
 
-            if (_questions.Count > 0) 
+            if (_questions.Count > 0)
+            {
                 OnNextQuestion?.Invoke(GetQuestion());
+                return true;
+            }
             else
+            {
                 End();
+                return false;
+            }
         }
 
         private void End()
