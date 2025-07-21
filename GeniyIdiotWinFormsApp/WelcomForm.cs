@@ -19,11 +19,17 @@ namespace GeniyIdiotWinFormsApp
             }
             else
             {
-                MainForm mainForm = new MainForm(userName);
+                var mainForm = new FrmQuiz(userName);
                 mainForm.Show();
                 mainForm.FormClosed += (s, arg) => this.Close();
                 this.Hide();
             }
+        }
+
+        private void getNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) 
+                startGameButton_Click(sender, e);
         }
     }
 }
