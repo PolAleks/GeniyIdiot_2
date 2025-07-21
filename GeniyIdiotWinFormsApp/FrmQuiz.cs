@@ -88,5 +88,11 @@ namespace GeniyIdiotWinFormsApp
                 textBoxAnswer.Focus();
             }
         }
+
+        private void textBoxAnswer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter) 
+                buttonNexQuestion_Click(sender, e);
+        }
     }
 }
