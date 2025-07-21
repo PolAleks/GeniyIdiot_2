@@ -61,6 +61,7 @@
             this.getNameTextBox.Name = "getNameTextBox";
             this.getNameTextBox.Size = new System.Drawing.Size(272, 22);
             this.getNameTextBox.TabIndex = 2;
+            this.getNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.getNameTextBox_KeyDown);
             // 
             // startGameButton
             // 

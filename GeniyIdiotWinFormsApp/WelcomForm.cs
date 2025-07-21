@@ -25,5 +25,11 @@ namespace GeniyIdiotWinFormsApp
                 this.Hide();
             }
         }
+
+        private void getNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) 
+                startGameButton_Click(sender, e);
+        }
     }
 }
