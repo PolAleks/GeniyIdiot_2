@@ -19,7 +19,7 @@ namespace GeniyIdiotWinFormsApp
             }
             else
             {
-                MainForm mainForm = new MainForm(userName);
+                var mainForm = new FrmQuiz(userName);
                 mainForm.Show();
                 mainForm.FormClosed += (s, arg) => this.Close();
                 this.Hide();

@@ -16,8 +16,7 @@ namespace GeniyIdiotWinFormsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new WelcomForm());
-            Application.Run(new FrmQuiz());
+            Application.Run(new WelcomForm());
         }
     }
 }

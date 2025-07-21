@@ -78,6 +78,7 @@
             this.buttonNexQuestion.TabIndex = 3;
             this.buttonNexQuestion.Text = "&Далее";
             this.buttonNexQuestion.UseVisualStyleBackColor = true;
+            this.buttonNexQuestion.Click += new System.EventHandler(this.buttonNexQuestion_Click);
             // 
             // labelTimer
             // 

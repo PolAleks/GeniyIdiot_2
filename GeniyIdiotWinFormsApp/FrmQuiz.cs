@@ -14,10 +14,10 @@ namespace GeniyIdiotWinFormsApp
     public partial class FrmQuiz : Form
     {
         private QuizManager _quizManager;
-        public FrmQuiz()
+        public FrmQuiz(string name)
         {
             InitializeComponent();
-            _quizManager = new QuizManager(new User("Тестовый"));
+            _quizManager = new QuizManager(new User(name));
 
             _quizManager.OnNextQuestion += _quizManager_OnNextQuestion;
             _quizManager.OnTimeUpdate += _quizManager_OnTimeUpdate;
@@ -47,6 +47,9 @@ namespace GeniyIdiotWinFormsApp
         {
             labelQuestionNumber.Invoke((Action)(() => labelQuestionNumber.Text = $"Вопрос № {question.Number}"));
             labelQuestionText.Invoke((Action)(() => labelQuestionText.Text = question.Text));
+
+            textBoxAnswer.Text = string.Empty;
+            textBoxAnswer.Focus();
         }
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,6 +72,21 @@ namespace GeniyIdiotWinFormsApp
         {
             var questionsFrm = new FrmViewQuestions();
             questionsFrm.ShowDialog();
+        }
+
+        private void buttonNexQuestion_Click(object sender, EventArgs e)
+        {
+            var isValidAnswer = InputValidator.TryParseNumber(textBoxAnswer.Text, out int answer, out string message);
+            if (isValidAnswer)
+            {
+                _quizManager.Submit(answer);
+            }
+            else
+            {
+                MessageBox.Show(message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxAnswer.Text = string.Empty;
+                textBoxAnswer.Focus();
+            }
         }
     }
 }
