@@ -49,5 +49,26 @@ namespace GeniyIdiotWinFormsApp
             labelQuestionText.Invoke((Action)(() => labelQuestionText.Text = question.Text));
         }
 
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void resultsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var resultsFrm = new ResultsForm();
+            resultsFrm.ShowDialog();
+        }
+
+        private void questionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var questionsFrm = new FrmViewQuestions();
+            questionsFrm.ShowDialog();
+        }
     }
 }
