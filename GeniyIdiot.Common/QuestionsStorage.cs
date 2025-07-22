@@ -7,8 +7,9 @@ namespace GeniyIdiot.Common
 {
     public class QuestionsStorage
     {
-        private static string _file = "question.json";
-        private static IConvert _converter = new JsonConverter();
+        private static string _file = "question.xml";
+        //private static IConvert _converter = new JsonConverter();
+        private static IConvert _converter = new XMLConverter();
 
         public static List<Question> GetAll()
         {
