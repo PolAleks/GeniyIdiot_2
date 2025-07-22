@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +8,7 @@ namespace GeniyIdiot.Common
     public class QuestionsStorage
     {
         private static string _file = "question.json";
+        private static IConvert _converter = new JsonConverter();
 
         public static List<Question> GetAll()
         {
@@ -17,7 +17,7 @@ namespace GeniyIdiot.Common
             if (FileProvider.Exists(_file))
             {
                 var content = FileProvider.Load(_file);
-                questions = JsonConvert.DeserializeObject<List<Question>>(content);
+                questions = _converter.Deserialize<List<Question>>(content);
 
                 if (questions.Count == 0)
                     questions = InitialQuestions();
@@ -65,7 +65,7 @@ namespace GeniyIdiot.Common
 
         public static void Save(List<Question> questions)
         {
-            var content = JsonConvert.SerializeObject(questions, Formatting.Indented);
+            var content = _converter.Serialize(questions);
             FileProvider.Save(_file, content, false);
         }
 
